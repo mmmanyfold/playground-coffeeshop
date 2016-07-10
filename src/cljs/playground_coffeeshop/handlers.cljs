@@ -8,6 +8,6 @@
    db/default-db))
 
 (re-frame/register-handler
- :set-active-panel
- (fn [db [_ active-panel]]
-   (assoc db :active-panel active-panel)))
+ :set-active-view
+ (fn [db [_ active-view]]
+   (assoc db :active-view active-view)))

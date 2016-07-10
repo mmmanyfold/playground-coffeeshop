@@ -4,33 +4,40 @@
 
 ;; home
 
-(defn home-panel []
+(defn home-view []
   (let [name (re-frame/subscribe [:name])]
     (fn []
-      [:div (str "Hello from " @name ". This is the Home Page.")
+      [:div (str "Hola from " @name ". This is the Home Page.")
        [:div [:a {:href "#/about"} "go to About Page"]]])))
 
 
 ;; about
 
-(defn about-panel []
+(defn about-view []
   (fn []
     [:div "This is the About Page."
-     [:div [:a {:href "#/"} "go to Home Page"]]]))
+     [:div [:a {:href "#/events"} "go to Events Page"]]]))
 
+;; events
+
+(defn events-view []
+ (fn []
+   [:div "This is the Events Page."
+    [:div [:a {:href "#/"} "go to Home Page"]]]))
 
 ;; main
 
-(defmulti panels identity)
-(defmethod panels :home-panel [] [home-panel])
-(defmethod panels :about-panel [] [about-panel])
-(defmethod panels :default [] [:div])
+(defmulti views identity)
+(defmethod views :home-view [] [home-view])
+(defmethod views :about-view [] [about-view])
+(defmethod views :events-view [] [events-view])
+(defmethod views :default [] [:div])
 
-(defn show-panel
-  [panel-name]
-  [panels panel-name])
+(defn show-view
+  [view-name]
+  [views view-name])
 
-(defn main-panel []
-  (let [active-panel (re-frame/subscribe [:active-panel])]
+(defn main-view []
+  (let [active-view (re-frame/subscribe [:active-view])]
     (fn []
-      [show-panel @active-panel])))
+      [show-view @active-view])))

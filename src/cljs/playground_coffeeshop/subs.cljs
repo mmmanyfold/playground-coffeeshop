@@ -8,6 +8,6 @@
    (reaction (:name @db))))
 
 (re-frame/register-sub
- :active-panel
+ :active-view
  (fn [db _]
-   (reaction (:active-panel @db))))
+   (reaction (:active-view @db))))
