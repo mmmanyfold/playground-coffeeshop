@@ -1,6 +1,6 @@
 # playground-coffeeshop
 
-A [re-frame](https://github.com/Day8/re-frame) application designed to ... well, that part is up to you.
+A [re-frame](https://github.com/Day8/re-frame) application designed to share playground with the world.
 
 ## Development Mode
 
@@ -55,4 +55,15 @@ If you only want to compile the clojurescript code:
 ```
 lein clean
 lein cljsbuild once min
+```
+
+## Deploying to S3
+
+Setup enviornment variables
+
+export AWS_ACCESS_KEY_ID=...
+export AWS_SECRET_ACCESS_KEY=...
+
+```
+lein s3-static-deploy
 ```
