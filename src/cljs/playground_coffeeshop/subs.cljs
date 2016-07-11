@@ -5,7 +5,12 @@
 (re-frame/register-sub
  :name
  (fn [db]
-   (reaction (:name @db))))
+   (reaction (:name @db)))
+
+ (re-frame/register-sub
+  :cms-data
+  (fn [db]
+    (reaction (:cms-data @db)))))
 
 (re-frame/register-sub
  :active-view

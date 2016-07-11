@@ -22,7 +22,7 @@ lein less auto
 
 ```
 lein clean
-lein figwheel dev
+rlwrap lein figwheel dev
 ```
 
 Figwheel will automatically push cljs changes to the browser.

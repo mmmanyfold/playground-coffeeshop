@@ -1,13 +1,21 @@
 (ns playground-coffeeshop.views
     (:require [re-frame.core :as re-frame]))
 
+;; Banner
+
+(defn banner-component [src]
+  [:img {:src src}])
 
 ;; home
 
 (defn home-view []
-  (let [name (re-frame/subscribe [:name])]
+  (let [name (re-frame/subscribe [:name])
+        cms-data (re-frame/subscribe [:cms-data])]
     (fn []
-      [:div (str "Hola from " @name ". This is the Home Page.")
+      [:div
+        [:button {:on-click #(re-frame/dispatch [:get-cms-data])} "get-data-cms"]
+        [banner-component (get-in (first (:Asset (:includes @cms-data))) [:fields :file :url])]
+        (str "Hola from " @name ". This is the Home Page.")
        [:div [:a {:href "#/about"} "go to About Page"]]])))
 
 

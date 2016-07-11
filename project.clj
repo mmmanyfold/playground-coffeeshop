@@ -7,7 +7,8 @@
                  [secretary "1.2.3"]
                  [compojure "1.5.0"]
                  [yogthos/config "0.8"]
-                 [ring "1.4.0"]]
+                 [ring "1.4.0"]
+                 [cljs-ajax "0.5.8"]]
 
   :plugins [[lein-cljsbuild "1.1.3"]
             [lein-less "1.7.5"]
@@ -36,8 +37,8 @@
    {:dependencies []
 
     :plugins      [[lein-figwheel "0.5.4-3"]
-                   [lein-doo "0.1.6"]]
-    }}
+                   [lein-doo "0.1.6"]]}}
+
 
   :cljsbuild
   {:builds
@@ -62,12 +63,11 @@
      :source-paths ["src/cljs" "test/cljs"]
      :compiler     {:output-to     "resources/public/js/compiled/test.js"
                     :main          playground-coffeeshop.runner
-                    :optimizations :none}}
-    ]}
+                    :optimizations :none}}]}
+
 
   :main playground-coffeeshop.server
 
   :aot [playground-coffeeshop.server]
 
-  :prep-tasks [["cljsbuild" "once" "min"] "compile"]
-  )
+  :prep-tasks [["cljsbuild" "once" "min"] "compile"])
