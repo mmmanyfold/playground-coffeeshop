@@ -5,4 +5,4 @@ deploy:
   bucket: "playground-coffeeshop"
   skip_cleanup: true
   language: clojure
-  script: lein cljsbuild once min
+  script: "lein cljsbuild once min"
