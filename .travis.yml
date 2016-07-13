@@ -1,5 +1,6 @@
 language: clojure
-script: "lein cljsbuild once min && cd resources/public"
+script: "lein cljsbuild once min"
+before_deploy: "cd resources/public"
 notifications:
   slack: mmmanyfold:eqFezFl7jvwPGIYPH6ORsIgO
 
