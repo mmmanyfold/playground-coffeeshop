@@ -16,7 +16,7 @@
 
   :aws {:access-key       ~(System/getenv "AWS_ACCESS_KEY_ID")
         :secret-key       ~(System/getenv "AWS_SECRET_ACCESS_KEY")
-        :s3-static-deploy {:bucket     "playground-coffeeshop"
+        :s3-static-deploy {:bucket     "dev.playgroundcoffeeshop.com"
                            :local-root "resources/public"}}
 
   :min-lein-version "2.5.3"
