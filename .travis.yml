@@ -4,3 +4,5 @@ deploy:
   secret_access_key: AWS_SECRET_ACCESS_KEY
   bucket: "playground-coffeeshop"
   skip_cleanup: true
+  language: clojure
+  script: lein cljsbuild once min
