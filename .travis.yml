@@ -1,5 +1,7 @@
 language: clojure
-script: "lein cljsbuild once min"
+script: "lein cljsbuild once min && cd resources/public"
+notifications:
+  slack: mmmanyfold:eqFezFl7jvwPGIYPH6ORsIgO
 
 deploy:
   provider: s3
