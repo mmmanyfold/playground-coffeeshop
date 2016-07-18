@@ -42,7 +42,7 @@
 (defmethod views :home-view [] [home-view])
 (defmethod views :about-view [] [about-view])
 (defmethod views :events-view [] [events-view])
-(defmethod views :default [] [:div])
+(defmethod views :default [] [:div "404"])
 
 (defn show-view
   [view-name]
