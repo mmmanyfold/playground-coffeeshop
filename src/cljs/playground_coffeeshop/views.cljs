@@ -1,10 +1,12 @@
 (ns playground-coffeeshop.views
-    (:require [re-frame.core :as re-frame]))
+  (:require [re-frame.core :as re-frame]))
 
 ;; Banner
 
-(defn banner-component [src]
-  [:img {:src src}])
+(defn banner-component [data]
+  (if (:error data)
+    [:span (:status-text (:error data))]
+    [:img {:src data}]))
 
 ;; home
 
@@ -13,10 +15,11 @@
         cms-data (re-frame/subscribe [:cms-data])]
     (fn []
       [:div
-        [:button {:on-click #(re-frame/dispatch [:get-cms-data])} "get-data-cms"]
-        [banner-component (get-in (first (:Asset (:includes @cms-data))) [:fields :file :url])]
-        (str "Hola from " @name ". This is the Home Page.")
-       [:div [:a {:href "#/about"} "go to About Page"]]])))
+       [:button {:on-click #(re-frame/dispatch [:get-cms-data])} "get-data-cms"]
+       [:br]
+       [banner-component (get-in (first (:Asset (:includes @cms-data))) [:fields :file :url])]
+       (str @name ":: This is the Home Page.")
+       [:div [:a {:href "/about"} "go to About Page"]]])))
 
 
 ;; about
@@ -24,14 +27,14 @@
 (defn about-view []
   (fn []
     [:div "This is the About Page."
-     [:div [:a {:href "#/events"} "go to Events Page"]]]))
+     [:div [:a {:href "/events"} "go to Events Page"]]]))
 
 ;; events
 
 (defn events-view []
- (fn []
-   [:div "This is the Events Page."
-    [:div [:a {:href "#/"} "go to Home Page"]]]))
+  (fn []
+    [:div "This is the Events Page."
+     [:div [:a {:href "/"} "go to Home Page"]]]))
 
 ;; main
 
