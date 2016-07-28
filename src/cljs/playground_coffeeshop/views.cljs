@@ -1,42 +1,8 @@
 (ns playground-coffeeshop.views
-  (:require [re-frame.core :as re-frame]))
-
-;; Banner
-
-(defn banner-component [data]
-  (if (:error data)
-    [:span (:status-text (:error data))]
-    [:img {:src data}]))
-
-;; home
-
-(defn home-view []
-  (let [name (re-frame/subscribe [:name])
-        cms-data (re-frame/subscribe [:cms-data])]
-    (fn []
-      [:div
-       [:button {:on-click #(re-frame/dispatch [:get-cms-data])} "get-data-cms"]
-       [:br]
-       [banner-component (get-in (first (:Asset (:includes @cms-data))) [:fields :file :url])]
-       (str @name ":: This is the Home Page.")
-       [:div [:a {:href "/about"} "go to About Page"]]])))
-
-
-;; about
-
-(defn about-view []
-  (fn []
-    [:div "This is the About Page."
-     [:div [:a {:href "/events"} "go to Events Page"]]]))
-
-;; events
-
-(defn events-view []
-  (fn []
-    [:div "This is the Events Page."
-     [:div [:a {:href "/"} "go to Home Page"]]]))
-
-;; main
+  (:require [re-frame.core :as re-frame]
+            [playground-coffeeshop.views.about :refer [about-view]]
+            [playground-coffeeshop.views.events :refer [events-view]]
+            [playground-coffeeshop.views.home :refer [home-view]]))
 
 (defmulti views identity)
 (defmethod views :home-view [] [home-view])
