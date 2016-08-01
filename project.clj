@@ -71,4 +71,7 @@
 
   :aot [playground-coffeeshop.server]
 
-  :prep-tasks [["cljsbuild" "once" "min"] "compile"])
+  :prep-tasks [["cljsbuild" "once" "min"] "compile"]
+
+  :foreign-libs [{:file "https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.10.0/matter.js"
+                  :provides  ["Matter"]}])
