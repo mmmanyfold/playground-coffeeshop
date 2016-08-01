@@ -20,7 +20,7 @@
     (reagent/create-class
       {:component-did-mount
                      (fn []
-                       (let [; create a renderer
+                       #_(let [; create a renderer
                              render (.create Render #js {:element (.querySelector js/document "#canvas")
                                                          :engine  engine
 
@@ -30,7 +30,8 @@
                          ; run the engine
                          (.run Engine engine)
                          ; run the renderer
-                         (.run Render render)))
+                         (.run Render render))
+                       )
 
        :display-name "header-component"
 
