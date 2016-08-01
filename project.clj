@@ -27,7 +27,7 @@
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"
                                     "test/js"]
 
-  :figwheel {:css-dirs ["resources/public/css"]
+  :figwheel {:css-dirs     ["resources/public/css"]
              :ring-handler playground-coffeeshop.handler/dev-handler}
 
   :less {:source-paths ["less"]
@@ -54,7 +54,7 @@
 
     {:id           "min"
      :source-paths ["src/cljs"]
-     :jar true
+     :jar          true
      :compiler     {:main            playground-coffeeshop.core
                     :output-to       "resources/public/js/compiled/app.js"
                     :optimizations   :advanced
