@@ -59,7 +59,8 @@
                     :output-to       "resources/public/js/compiled/app.js"
                     :optimizations   :advanced
                     :closure-defines {goog.DEBUG false}
-                    :pretty-print    false}}
+                    :pretty-print    false
+                    :externs ["externs.js"]}}
     {:id           "test"
      :source-paths ["src/cljs" "test/cljs"]
      :compiler     {:output-to     "resources/public/js/compiled/test.js"
@@ -71,7 +72,4 @@
 
   :aot [playground-coffeeshop.server]
 
-  :prep-tasks [["cljsbuild" "once" "min"] "compile"]
-
-  :foreign-libs [{:file "https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.10.0/matter.js"
-                  :provides  ["Matter"]}])
+  :prep-tasks [["cljsbuild" "once" "min"] "compile"])
