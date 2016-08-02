@@ -1,18 +1,31 @@
 body {
     color: black;
+    font-family: "helvetica";
+    font-size: 1.1rem;
 }
 #app {
   margin: 0 auto;
-  width: 97%;
+  width: 75%;
 }
+
+// main content
+
+.content {
+  width: 80%;
+  img.main {
+    width: 100%;
+  }
+}
+
+// flex templates
 
 .flex-row {
   display: -webkit-flex;
   display: flex;
   -webkit-flex-flow: row nowrap;
   flex-flow:         row nowrap;
-  // -webkit-justify-content: space-between;
-  // justify-content:         space-between;
+  -webkit-justify-content: space-between;
+  justify-content:         space-between;
 }
 .flex-col {
   display: -webkit-flex;
@@ -23,69 +36,73 @@ body {
   justify-content:         space-between;
 }
 
+// header component
+
 .header {
   width: 100%;
   margin-bottom: 40px;
   .left {
     width: 45%;
-    .logo {
+    img.logo {
       width: 100%;
     }
   }
   .right {
     width: 55%;
     text-align: right;
-    .phone {
+    img.phone {
       width: 30%;
       padding-top: 20px;
     }
-    .addy {
+    img.addy {
       width: 65%;
     }
   }
 }
+
+// menu component
 
 .menu {
   width: 20%;
   div {
     margin-bottom: 40px;
     padding: 5px;
-    height: 16px;
+    height: 12px;
   }
 }
 .menu-about {
-  width: 115px;
+  width: 86px;
   background: url('/img/menu_about.png') center no-repeat;
-  background-size: 115px;
+  background-size: 86px;
 }
 .menu-about:hover {
   background: url('/img/menu_about_inverse.png') black center no-repeat;
-  background-size: 115px;
+  background-size: 86px;
 }
 .menu-gallery {
-  width: 147px;
+  width: 110px;
   background: url('/img/menu_gallery.png') center no-repeat;
-  background-size: 147px;
+  background-size: 110px;
 }
 .menu-gallery:hover {
   background: url('/img/menu_gallery_inverse.png') black center no-repeat;
-  background-size: 147px;
+  background-size: 110px;
 }
 .menu-events {
-  width: 129px;
+  width: 97px;
   background: url('/img/menu_events.png') center no-repeat;
-  background-size: 129px;
+  background-size: 97px;
 }
 .menu-events:hover {
   background: url('/img/menu_events_inverse.png') black center no-repeat;
-  background-size: 129px;
+  background-size: 97px;
 }
 .menu-contact {
-  width: 154px;
+  width: 116px;
   background: url('/img/menu_contact.png') center no-repeat;
-  background-size: 154px;
+  background-size: 116px;
 }
 .menu-contact:hover {
   background: url('/img/menu_contact_inverse.png') black center no-repeat;
-  background-size: 154px;
+  background-size: 116px;
 }

@@ -7,10 +7,11 @@
   (let [name (re-frame/subscribe [:name])
         cms-data (re-frame/subscribe [:cms-data])]
     (fn []
-      [:div.view
+      [:div
        [header-component (get-in (first (:Asset (:includes @cms-data))) [:fields :file :url])]
-       [menu-component]
-       [:button {:on-click #(re-frame/dispatch [:get-cms-data])} "get-data-cms"]
-       [:br]
-       (str @name ":: This is the Home Page.")
-       [:div [:a {:href "/about"} "go to About Page"]]])))
+       [:div.flex-row
+         [menu-component]
+         [:div.content
+           [:img.main {:src "img/home1.jpg"}]]]])))
+          
+          ;  [:button {:on-click #(re-frame/dispatch [:get-cms-data])} "get-data-cms"]]]])))

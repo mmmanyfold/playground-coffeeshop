@@ -1,8 +1,17 @@
-(ns playground-coffeeshop.views.about)
+(ns playground-coffeeshop.views.about
+  (:require [re-frame.core :as re-frame]
+            [playground-coffeeshop.components.header :refer [header-component]]
+            [playground-coffeeshop.components.menu :refer [menu-component]]))
 
 ;; about
 
 (defn about-view []
   (fn []
-    [:div "This is the About Page."
-     [:div [:a {:href "/events"} "go to Events Page"]]]))
+    [:div
+     [header-component]
+     [:div.flex-row
+       [menu-component]
+       [:div.content
+        [:div "About Playground?"
+              [:p "Hours?"]
+              [:p "etc."]]]]]))

@@ -1,4 +1,5 @@
-(ns playground-coffeeshop.components.menu)
+(ns playground-coffeeshop.components.menu
+  (:require [re-frame.core :as re-frame]))
 
 (defn menu-component []
   (fn []

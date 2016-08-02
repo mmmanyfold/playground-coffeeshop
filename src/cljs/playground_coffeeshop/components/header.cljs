@@ -28,8 +28,8 @@
                            ; run the engine
                            (.run Engine engine)
                            ; run the renderer
-                           (.run Render render))
-                       )
+                           (.run Render render)))
+
 
 
        :display-name "header-component"
@@ -38,7 +38,8 @@
                      (fn [data]
                        [:div.header.flex-row
                         [:div.left
-                         [:img.logo {:src "img/header_logo.png"}]]
+                         [:a {:href "/"}
+                          [:img.logo {:src "img/header_logo.png"}]]]
                         [:div.right.flex-col
                          [:div
                           [:img.phone {:src "img/header_phone.png"}]]

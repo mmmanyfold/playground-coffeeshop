@@ -42,5 +42,9 @@
                 (re-frame/dispatch [:set-active-view :about-view]))
       (defroute "/events" []
                 (re-frame/dispatch [:set-active-view :events-view]))
+      (defroute "/gallery" []
+                (re-frame/dispatch [:set-active-view :gallery-view]))
+      (defroute "/contact" []
+                (re-frame/dispatch [:set-active-view :contact-view]))
       ;; --------------------
       (hook-browser-navigation!))
