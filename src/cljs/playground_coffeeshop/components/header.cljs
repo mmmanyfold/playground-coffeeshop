@@ -20,25 +20,32 @@
     (reagent/create-class
       {:component-did-mount
                      (fn []
-                       #_(let [; create a renderer
+                       #_(let []; create a renderer
                              render (.create Render #js {:element (.querySelector js/document "#canvas")
-                                                         :engine  engine
+                                                         :engine  engine}))
 
-                                                         })]
+
                          ; add all of the bodies to the world
                          (.add World (.-world engine) #js [boxA, boxB, ground])
                          ; run the engine
                          (.run Engine engine)
                          ; run the renderer
                          (.run Render render))
-                       )
+
 
        :display-name "header-component"
 
        :reagent-render
                      (fn [data]
-                       [:div.header
-                        [:div#canvas]
+                       [:div.header.flex-row
+                        [:div.left
+                         [:img.logo {:src "img/header_logo.png"}]]
+                        [:div.right.flex-col
+                         [:div
+                          [:img.phone {:src "img/header_phone.png"}]]
+                         [:div#canvas]
+                         [:div
+                          [:img.addy {:src "img/header_addy.png"}]]]
                         (if (:error data)
                           [:span (:status-text (:error data))]
                           [:img {:src data}])])})))

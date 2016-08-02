@@ -1,41 +1,91 @@
 body {
-    color:red;
+    color: black;
+}
+#app {
+  margin: 0 auto;
+  width: 97%;
 }
 
-.menu {
-  width: 100px;
-  div {
-    margin: 10px;
-    padding: 5px;
-    height: 19px;
+.flex-row {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow:         row nowrap;
+  // -webkit-justify-content: space-between;
+  // justify-content:         space-between;
+}
+.flex-col {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow:         column nowrap;
+  -webkit-justify-content: space-between;
+  justify-content:         space-between;
+}
+
+.header {
+  width: 100%;
+  margin-bottom: 40px;
+  .left {
+    width: 45%;
+    .logo {
+      width: 100%;
+    }
+  }
+  .right {
+    width: 55%;
+    text-align: right;
+    .phone {
+      width: 30%;
+      padding-top: 20px;
+    }
+    .addy {
+      width: 65%;
+    }
   }
 }
 
+.menu {
+  width: 20%;
+  div {
+    margin-bottom: 40px;
+    padding: 5px;
+    height: 16px;
+  }
+}
 .menu-about {
-  width: 136px;
+  width: 115px;
   background: url('/img/menu_about.png') center no-repeat;
+  background-size: 115px;
 }
 .menu-about:hover {
-  background: black url('/img/menu_about_inverse.png') center no-repeat;
+  background: url('/img/menu_about_inverse.png') black center no-repeat;
+  background-size: 115px;
 }
 .menu-gallery {
-  width: 174px;
+  width: 147px;
   background: url('/img/menu_gallery.png') center no-repeat;
+  background-size: 147px;
 }
 .menu-gallery:hover {
-  background: black url('/img/menu_gallery_inverse.png') center no-repeat;
+  background: url('/img/menu_gallery_inverse.png') black center no-repeat;
+  background-size: 147px;
 }
 .menu-events {
-  width: 153px;
+  width: 129px;
   background: url('/img/menu_events.png') center no-repeat;
+  background-size: 129px;
 }
 .menu-events:hover {
-  background: black url('/img/menu_events_inverse.png') center no-repeat;
+  background: url('/img/menu_events_inverse.png') black center no-repeat;
+  background-size: 129px;
 }
 .menu-contact {
-  width: 183px;
+  width: 154px;
   background: url('/img/menu_contact.png') center no-repeat;
+  background-size: 154px;
 }
 .menu-contact:hover {
-  background: black url('/img/menu_contact_inverse.png') center no-repeat;
+  background: url('/img/menu_contact_inverse.png') black center no-repeat;
+  background-size: 154px;
 }
