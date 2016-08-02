@@ -20,17 +20,16 @@
     (reagent/create-class
       {:component-did-mount
                      (fn []
-                       #_(let []; create a renderer
-                             render (.create Render #js {:element (.querySelector js/document "#canvas")
-                                                         :engine  engine}))
-
-
-                         ; add all of the bodies to the world
-                         (.add World (.-world engine) #js [boxA, boxB, ground])
-                         ; run the engine
-                         (.run Engine engine)
-                         ; run the renderer
-                         (.run Render render))
+                       #_(let [; create a renderer
+                               render (.create Render #js {:element (.querySelector js/document "#canvas")
+                                                           :engine  engine})]
+                           ; add all of the bodies to the world
+                           (.add World (.-world engine) #js [boxA, boxB, ground])
+                           ; run the engine
+                           (.run Engine engine)
+                           ; run the renderer
+                           (.run Render render))
+                       )
 
 
        :display-name "header-component"
