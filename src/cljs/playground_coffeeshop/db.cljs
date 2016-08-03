@@ -1,4 +1,6 @@
 (ns playground-coffeeshop.db)
 
 (def default-db
-  {:cms-data []})
+  {:cms-data []
+   :upcoming-events []
+   :past-events []})
