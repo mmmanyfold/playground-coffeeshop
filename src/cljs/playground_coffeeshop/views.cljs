@@ -4,7 +4,9 @@
             [playground-coffeeshop.views.events :refer [events-view]]
             [playground-coffeeshop.views.home :refer [home-view]]
             [playground-coffeeshop.views.gallery :refer [gallery-view]]
-            [playground-coffeeshop.views.contact :refer [contact-view]]))
+            [playground-coffeeshop.views.contact :refer [contact-view]]
+            [playground-coffeeshop.components.header :refer [header-component]]
+            [playground-coffeeshop.components.menu :refer [menu-component]]))
 
 (defmulti views identity)
 (defmethod views :home-view [] [home-view])
@@ -21,4 +23,9 @@
 (defn main-view []
   (let [active-view (re-frame/subscribe [:active-view])]
     (fn []
-      [show-view @active-view])))
+      [:div
+       [header-component]
+       [:div.flex-row
+        [menu-component]
+        [:div.content
+         [show-view @active-view]]]])))
