@@ -1,8 +1,17 @@
 body {
     color: black;
-    font-family: "helvetica";
-    font-size: 1.1rem;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 1.1em;
 }
+
+a {
+  text-decoration: none;
+  color: #8B4513;
+}
+a:hover {
+  text-decoration: underline;
+}
+
 #app {
   margin: 0 auto;
   width: 75%;
@@ -41,6 +50,7 @@ body {
 .header {
   width: 100%;
   margin-bottom: 40px;
+
   .left {
     width: 45%;
     img.logo {
@@ -50,12 +60,12 @@ body {
   .right {
     width: 55%;
     text-align: right;
-    img.phone {
-      width: 30%;
+    img.addy {
+      width: 33%;
       padding-top: 20px;
     }
-    img.addy {
-      width: 65%;
+    img.temp {
+      width: 30%;
     }
   }
 }
@@ -64,45 +74,22 @@ body {
 
 .menu {
   width: 20%;
-  div {
-    margin-bottom: 40px;
-    padding: 5px;
-    height: 12px;
+  padding-left: 5px;
+
+  a {
+    font-family: "Brush Script MT", cursive;
+    color: black;
+    font-size: 1.7em;
+    text-decoration: none;
   }
-}
-.menu-about {
-  width: 86px;
-  background: url('/img/menu_about.png') center no-repeat;
-  background-size: 86px;
-}
-.menu-about:hover {
-  background: url('/img/menu_about_inverse.png') black center no-repeat;
-  background-size: 86px;
-}
-.menu-gallery {
-  width: 110px;
-  background: url('/img/menu_gallery.png') center no-repeat;
-  background-size: 110px;
-}
-.menu-gallery:hover {
-  background: url('/img/menu_gallery_inverse.png') black center no-repeat;
-  background-size: 110px;
-}
-.menu-events {
-  width: 97px;
-  background: url('/img/menu_events.png') center no-repeat;
-  background-size: 97px;
-}
-.menu-events:hover {
-  background: url('/img/menu_events_inverse.png') black center no-repeat;
-  background-size: 97px;
-}
-.menu-contact {
-  width: 116px;
-  background: url('/img/menu_contact.png') center no-repeat;
-  background-size: 116px;
-}
-.menu-contact:hover {
-  background: url('/img/menu_contact_inverse.png') black center no-repeat;
-  background-size: 116px;
+  div {
+    margin-bottom: 0.7em;
+  }
+  span {
+    padding: 0 7px 0 7px;
+  }
+  span:hover {
+    background: black;
+    color: white
+  }
 }

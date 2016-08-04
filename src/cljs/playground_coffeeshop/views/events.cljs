@@ -11,7 +11,7 @@
      [:div "Events:"
       [:p "Upcoming events" [:br]
        "- Title" [:br]
-       "- Date/time" [:br]
+       "- Date & time" [:br]
        "- Description" [:br]
        "- Image or flier"]
       [:p "Past events"]]

@@ -3,7 +3,7 @@
             [playground-coffeeshop.views.about :refer [about-view]]
             [playground-coffeeshop.views.events :refer [events-view]]
             [playground-coffeeshop.views.home :refer [home-view]]
-            [playground-coffeeshop.views.gallery :refer [gallery-view]]
+            [playground-coffeeshop.views.bookings :refer [bookings-view]]
             [playground-coffeeshop.views.contact :refer [contact-view]]
             [playground-coffeeshop.components.header :refer [header-component]]
             [playground-coffeeshop.components.menu :refer [menu-component]]))
@@ -12,7 +12,7 @@
 (defmethod views :home-view [] [home-view])
 (defmethod views :about-view [] [about-view])
 (defmethod views :events-view [] [events-view])
-(defmethod views :gallery-view [] [gallery-view])
+(defmethod views :bookings-view [] [bookings-view])
 (defmethod views :contact-view [] [contact-view])
 (defmethod views :default [] [:div "404"])
 

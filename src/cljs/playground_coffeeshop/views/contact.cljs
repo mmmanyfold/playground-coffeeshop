@@ -4,14 +4,5 @@
 ;; about
 
 (defn contact-view []
-  [:div "Contact:"
-   [:p "Rental form" [:br]
-    "- Name" [:br]
-    "- Email" [:br]
-    "- Event date" [:br]
-    "- Event description" [:br]
-    "- Capacity"]
-   [:p "General inquiry form" [:br]
-    "- Name" [:br]
-    "- Email" [:br]
-    "- Message"]])
+  [:div "General inquiries:"
+   [:p [:a {:href "mailto:general@playgroundcoffeeshop.com"} "general@playgroundcoffeeshop.com"]]])

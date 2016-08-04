@@ -4,7 +4,7 @@
 (defn menu-component []
   (fn []
     [:div.menu
-     [:a {:href "/about"} [:div.menu-about]]
-     [:a {:href "/gallery"} [:div.menu-gallery]]
-     [:a {:href "/events"} [:div.menu-events]]
-     [:a {:href "/contact"} [:div.menu-contact]]]))
+     [:a {:href "/about"} [:div [:span.menu-about "About"]]]
+     [:a {:href "/bookings"} [:div [:span.menu-bookings "Bookings"]]]
+     [:a {:href "/events"} [:div [:span.menu-events "Events"]]]
+     [:a {:href "/contact"} [:div [:span.menu-contact "Contact"]]]]))

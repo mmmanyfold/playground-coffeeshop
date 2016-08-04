@@ -26,13 +26,13 @@
   (fn
    [db [_ response]]
     ;; merge :includes :assets data with :event :item data
-    (let [items (:items response)
-          assets (get-in response [:includes :Asset])
-          urls (mapv #(get-in % [:fields :file :url]) assets)
-          items_mod (into [] (map-indexed (fn [i k] (assoc (:fields k) :img-src (get urls i))) items))
-          _response (assoc response :items items_mod)]
-      (-> db
-          (assoc :cms-data _response)))))
+   (let [items (:items response)
+         assets (get-in response [:includes :Asset])
+         urls (mapv #(get-in % [:fields :file :url]) assets)
+         items_mod (into [] (map-indexed (fn [i k] (assoc (:fields k) :img-src (get urls i))) items))
+         _response (assoc response :items items_mod)]
+     (-> db
+         (assoc :cms-data _response)))))
 
 (re-frame/register-handler
   :bad-response

@@ -42,10 +42,12 @@
                           [:img.logo {:src "img/header_logo.png"}]]]
                         [:div.right.flex-col
                          [:div
-                          [:img.phone {:src "img/header_phone.png"}]]
+                          [:img.addy {:src "img/header_addy.png"}]]
                          [:div#canvas]
                          [:div
-                          [:img.addy {:src "img/header_addy.png"}]]]
+                          [:img.temp {:src "img/seesaw-temp.png"}]]]
+                        ;  [:div
+                        ;   [:img.phone {:src "img/header_phone.png"}]]]
                         (if (:error data)
                           [:span (:status-text (:error data))]
                           [:img {:src data}])])})))
