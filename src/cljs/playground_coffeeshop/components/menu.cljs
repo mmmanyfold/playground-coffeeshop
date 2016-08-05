@@ -23,5 +23,5 @@
           [:li.pure-menu-item [:a.pure-menu-link {:href "/about"} "About"]]
           [:li.pure-menu-item [:a.pure-menu-link {:href "/bookings"} "Bookings"]]
           [:li.menu-item-divided.pure-menu-selected [:a.pure-menu-link {:href "/events"} "Events"]]
-          [:li.pure-menu-item [:a.pure-menu-link {:href "http://shop.playgroundcoffeeshop.com/"} "Merch"]]
+          [:li.pure-menu-item [:a.pure-menu-link {:href "/merch"} "Merch"]]
           [:li.pure-menu-item [:a.pure-menu-link {:href "/contact"} "Contact"]]]]]]))
