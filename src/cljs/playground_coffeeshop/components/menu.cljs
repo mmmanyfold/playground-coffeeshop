@@ -4,7 +4,8 @@
 (defn menu-component []
   (fn []
     [:div.menu
-     [:a {:href "/about"} [:div [:span.menu-about "About"]]]
-     [:a {:href "/bookings"} [:div [:span.menu-bookings "Bookings"]]]
-     [:a {:href "/events"} [:div [:span.menu-events "Events"]]]
-     [:a {:href "/contact"} [:div [:span.menu-contact "Contact"]]]]))
+     [:a {:href "/about"} [:div [:span "About"]]]
+     [:a {:href "/bookings"} [:div [:span "Bookings"]]]
+     [:a {:href "/events"} [:div [:span "Events"]]]
+     [:a {:href "http://shop.playgroundcoffeeshop.com/"} [:div [:span "Merch"]]]
+     [:a {:href "/contact"} [:div [:span "Contact"]]]]))
