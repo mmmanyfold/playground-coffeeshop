@@ -3,6 +3,12 @@
 
 (defn menu-component []
   (fn []
+    ;[:ul
+    ; [:li [:a {:href "/events"} [:div.menu-events]]]
+    ; [:li [:a {:on-click #(re-frame/dispatch [:display-upcoming-events])}
+    ;       [:span "upcoming"]]]
+    ; [:li [:a {:on-click #(re-frame/dispatch [:display-past-events])}
+    ;       [:span "past-events"]]]]
     [:div.menu
      [:a {:href "/about"} [:div [:span "About"]]]
      [:a {:href "/bookings"} [:div [:span "Bookings"]]]

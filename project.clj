@@ -9,7 +9,8 @@
                  [yogthos/config "0.8"]
                  [cljs-ajax "0.5.8"]
                  [ring "1.4.0"]
-                 [venantius/accountant "0.1.7"]]
+                 [venantius/accountant "0.1.7"]
+                 [cljsjs/moment "2.10.6-4"]]
 
   :plugins [[lein-cljsbuild "1.1.3"]
             [lein-less "1.7.5"]
