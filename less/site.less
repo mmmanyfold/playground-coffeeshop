@@ -22,10 +22,22 @@ a:hover {
 
 // main content
 
-.content {
-  width: 80%;
+.main {
+  width: 100%;
+  display: inline-block;
+
   img.main {
     width: 100%;
+  }
+
+  .content {
+    margin: 0 1em 1em 1em;
+  }
+
+  @media (max-width: 48em) {
+    .content {
+      margin: 1em;
+    }
   }
 }
 
@@ -51,24 +63,37 @@ a:hover {
 // header component
 
 .header {
-  width: 100%;
-  margin-bottom: 40px;
+  // width: 100%;
+  margin-bottom: 2em;
+  @media (max-width: 48em) {
+    margin-bottom: 0.5em;
+  }
 
   .left {
     width: 45%;
+
     img.logo {
       width: 100%;
     }
+    @media (max-width: 48em) {
+      width: inherit;
+      padding: 0 0.5em 0 0.2em;
+    }
   }
+
   .right {
     width: 55%;
     text-align: right;
+
     img.addy {
       width: 40%;
       padding-top: 20px;
     }
     img.temp {
       width: 27%;
+    }
+    @media (max-width: 48em) {
+      display: none;
     }
   }
 }
@@ -79,28 +104,6 @@ a:hover {
   font-family: BrushScriptMT;
   src:url("http://db.onlinewebfonts.com/t/33bc06ea126d3ff79886277122f1f510.ttf");
 }
-
-// .menu {
-//   width: 20%;
-//   padding-left: 5px;
-//   font-family: BrushScriptMT;
-//
-//   // a {
-//   //   color: black;
-//   //   font-size: 1.7em;
-//   //   text-decoration: none;
-//   // }
-//   div {
-//     margin-bottom: 0.7em;
-//   }
-//   span {
-//     padding: 0 7px 0 7px;
-//   }
-//   span:hover {
-//     background: black;
-//     color: white
-//   }
-// }
 
 // BEGIN PURE STYLING
 /*
@@ -138,12 +141,15 @@ This is the parent `<div>` that contains the menu and the content area.
     */
 
     #menu {
+        background: #fff;
         margin-left: -150px; /* "#menu" width */
         width: 150px;
+        display: inline-block;
+        vertical-align: top;
         // position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
+        // top: 0;
+        // left: 0;
+        // bottom: 0;
         z-index: 1000; /* so the menu or its navicon stays above all content */
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
@@ -157,24 +163,10 @@ This is the parent `<div>` that contains the menu and the content area.
             text-decoration: none;
             color: #000;
             border: none;
-            padding: 0.6em 0 0.6em 0.6em;
+            padding: 0 0 0 0.3em;
+            margin-bottom: 0.5em;
         }
 
-        /*
-        Remove all background/borders, since we are applying them to #menu.
-        */
-         #menu .pure-menu,
-         #menu .pure-menu ul {
-            border: none;
-        }
-
-        /*
-        Add that light border to separate items into groups.
-        */
-        #menu .pure-menu ul,
-        #menu .pure-menu .menu-item-divided {
-            border: none;
-        }
             /*
             Change color of the anchor links on hover/focus.
             */
@@ -187,8 +179,7 @@ This is the parent `<div>` that contains the menu and the content area.
         /*
         This styles the selected menu item `<li>`.
         */
-        #menu .pure-menu-selected,
-        #menu .pure-menu-heading {
+        #menu .pure-menu-selected {
             background: #000;
         }
             /*
@@ -211,7 +202,7 @@ This is the parent `<div>` that contains the menu and the content area.
     */
     .menu-link {
         font-family: "helvetica", sans-serif;
-        position: fixed;
+        // position: fixed;
         display: block; /* show this only on small screens */
         top: 0;
         left: 0; /* "#menu width" */
@@ -238,7 +229,7 @@ This is the parent `<div>` that contains the menu and the content area.
         .menu-link span:after {
             background-color: #fff;
             width: 100%;
-            height: 0.12em;
+            height: 0.2em;
         }
 
             .menu-link span:before,
@@ -252,20 +243,12 @@ This is the parent `<div>` that contains the menu and the content area.
                 margin-top: 0.6em;
             }
 
-
     /* -- Responsive Styles (Media Queries) ------------------------------------- */
 
     /*
     Hides the menu at `48em`, but modify this based on your app's needs.
     */
     @media (min-width: 48em) {
-
-        .header,
-        .content {
-            padding-left: 2em;
-            padding-right: 2em;
-        }
-
         #layout {
             padding-left: 150px; /* left col width "#menu" */
             left: 0;
