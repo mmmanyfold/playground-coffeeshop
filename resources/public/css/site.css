@@ -19,11 +19,20 @@ a:hover {
     width: 100%;
   }
 }
-.content {
-  width: 80%;
-}
-.content img.main {
+.main {
   width: 100%;
+  display: inline-block;
+}
+.main img.main {
+  width: 100%;
+}
+.main .content {
+  margin: 0 1em 1em 1em;
+}
+@media (max-width: 48em) {
+  .main .content {
+    margin: 1em;
+  }
 }
 .flex-row {
   display: -webkit-flex;
@@ -42,14 +51,24 @@ a:hover {
   justify-content: space-between;
 }
 .header {
-  width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 2em;
+}
+@media (max-width: 48em) {
+  .header {
+    margin-bottom: 0.5em;
+  }
 }
 .header .left {
   width: 45%;
 }
 .header .left img.logo {
   width: 100%;
+}
+@media (max-width: 48em) {
+  .header .left {
+    width: inherit;
+    padding: 0 0.5em 0 0.2em;
+  }
 }
 .header .right {
   width: 55%;
@@ -61,6 +80,11 @@ a:hover {
 }
 .header .right img.temp {
   width: 27%;
+}
+@media (max-width: 48em) {
+  .header .right {
+    display: none;
+  }
 }
 @font-face {
   font-family: BrushScriptMT;
@@ -97,12 +121,12 @@ This is the parent `<div>` that contains the menu and the content area.
     appears on the left side of the page.
     */
 #menu {
+  background: #fff;
   margin-left: -150px;
   /* "#menu" width */
   width: 150px;
-  top: 0;
-  left: 0;
-  bottom: 0;
+  display: inline-block;
+  vertical-align: top;
   z-index: 1000;
   /* so the menu or its navicon stays above all content */
   overflow-y: auto;
@@ -117,21 +141,8 @@ This is the parent `<div>` that contains the menu and the content area.
   text-decoration: none;
   color: #000;
   border: none;
-  padding: 0.6em 0 0.6em 0.6em;
-}
-/*
-        Remove all background/borders, since we are applying them to #menu.
-        */
-#menu .pure-menu,
-#menu .pure-menu ul {
-  border: none;
-}
-/*
-        Add that light border to separate items into groups.
-        */
-#menu .pure-menu ul,
-#menu .pure-menu .menu-item-divided {
-  border: none;
+  padding: 0 0 0 0.3em;
+  margin-bottom: 0.5em;
 }
 /*
             Change color of the anchor links on hover/focus.
@@ -144,8 +155,7 @@ This is the parent `<div>` that contains the menu and the content area.
 /*
         This styles the selected menu item `<li>`.
         */
-#menu .pure-menu-selected,
-#menu .pure-menu-heading {
+#menu .pure-menu-selected {
   background: #000;
 }
 /*
@@ -165,7 +175,6 @@ This is the parent `<div>` that contains the menu and the content area.
     */
 .menu-link {
   font-family: "helvetica", sans-serif;
-  position: fixed;
   display: block;
   /* show this only on small screens */
   top: 0;
@@ -192,7 +201,7 @@ This is the parent `<div>` that contains the menu and the content area.
 .menu-link span:after {
   background-color: #fff;
   width: 100%;
-  height: 0.12em;
+  height: 0.2em;
 }
 .menu-link span:before,
 .menu-link span:after {
@@ -208,11 +217,6 @@ This is the parent `<div>` that contains the menu and the content area.
     Hides the menu at `48em`, but modify this based on your app's needs.
     */
 @media (min-width: 48em) {
-  .header,
-  .content {
-    padding-left: 2em;
-    padding-right: 2em;
-  }
   #layout {
     padding-left: 150px;
     /* left col width "#menu" */
