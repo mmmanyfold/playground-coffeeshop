@@ -14,37 +14,39 @@
   {:nav-handler  (fn [path]
                    (secretary/dispatch! path))
    :path-exists? (fn [path]
-                     (secretary/locate-route path))})
+                   (secretary/locate-route path))})
 
 (defn hook-browser-navigation! []
-      (let [history (doto (Html5History.)
-                          (events/listen
-                            EventType/NAVIGATE
-                            (fn [event]
-                                (secretary/dispatch! (.-token event))))
-                          (.setUseFragment false)
-                          (.setPathPrefix "")
-                          (.setEnabled true))]
-           (events/listen js/document "click"
-                          (fn [e]
-                              (let [path (.getPath (.parse Uri (.-href (.-target e))))
-                                    title (.-title (.-target e))]
-                                   (when (secretary/locate-route path)
-                                         (. e preventDefault)
-                                         (. history (setToken path title))))))))
+  (let [history (doto (Html5History.)
+                  (events/listen
+                    EventType/NAVIGATE
+                    (fn [event]
+                      (secretary/dispatch! (.-token event))))
+                  (.setUseFragment false)
+                  (.setPathPrefix "")
+                  (.setEnabled true))]
+    (events/listen js/document "click"
+                   (fn [e]
+                     (let [path (.getPath (.parse Uri (.-href (.-target e))))
+                           title (.-title (.-target e))]
+                       (when (secretary/locate-route path)
+                         (. e preventDefault)
+                         (. history (setToken path title))))))))
 
 (defn app-routes []
-      ;; --------------------
-      ;; define routes here
-      (defroute "/" []
-                (re-frame/dispatch [:set-active-view :home-view]))
-      (defroute "/about" []
-                (re-frame/dispatch [:set-active-view :about-view]))
-      (defroute "/events" []
-                (re-frame/dispatch [:set-active-view :events-view]))
-      (defroute "/bookings" []
-                (re-frame/dispatch [:set-active-view :bookings-view]))
-      (defroute "/contact" []
-                (re-frame/dispatch [:set-active-view :contact-view]))
-      ;; --------------------
-      (hook-browser-navigation!))
+  ;; --------------------
+  ;; define routes here
+  (defroute "/" []
+            (re-frame/dispatch [:set-active-view :home-view]))
+  (defroute "/about" []
+            (re-frame/dispatch [:set-active-view :about-view]))
+  (defroute "/events" []
+            (re-frame/dispatch [:set-active-view :events-view]))
+  (defroute "/bookings" []
+            (re-frame/dispatch [:set-active-view :bookings-view]))
+  (defroute "/contact" []
+            (re-frame/dispatch [:set-active-view :contact-view]))
+  (defroute "/merch" []
+            (aset js/window.location "href" "http://shop.playgroundcoffeeshop.com/"))
+  ;; --------------------
+  (hook-browser-navigation!))
