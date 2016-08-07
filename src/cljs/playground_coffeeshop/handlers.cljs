@@ -39,6 +39,8 @@
                                     (assoc (:fields k)
                                       :img-src url))) items)
           _response (assoc response :items items_mod)]
+      (when (empty? (:filtered-events db))
+        (re-frame/dispatch [:display-filtered-events]))
       (-> db
           (assoc :cms-events _response)))))
 
