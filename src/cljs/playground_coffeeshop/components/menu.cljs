@@ -22,28 +22,28 @@
 (defn menu-component []
   (let [active-view (re-frame/subscribe [:active-view])]
     (fn []
-      ;[:ul
-      ; [:li [:a {:href "/events"} [:div.menu-events]]]
-      ; [:li [:a {:on-click #(re-frame/dispatch [:display-upcoming-events])}
-      ;       [:span "upcoming"]]]
-      ; [:li [:a {:on-click #(re-frame/dispatch [:display-past-events])}
-      ;       [:span "past-events"]]]]
-
-
+      ; active menu item class
       ; .menu-item-divided.pure-menu-selected
-
       [:div#layout
-        [:a#menuLink.menu-link
-          {:href "#menu"}
-          [:span]]
-        [:div#menu
-          [:div.pure-menu
-           [:ul.pure-menu-list
-            [:li.pure-menu-item [:a.pure-menu-link {:href "/about"} "About"]]
-            [:li.pure-menu-item [:a.pure-menu-link {:href "/bookings"} "Bookings"]]
-            [:li.pure-menu-item [:a.pure-menu-link {:href "/events"} "Events"]]
-            [:li.pure-menu-item [:a.pure-menu-link {:href "/merch"} "Merch"]]
-            [:li.pure-menu-item [:a.pure-menu-link {:href "/contact"} "Contact"]]]]]
-        [:div.main
-          [:div.content
-            [show-view @active-view]]]])))
+       [:a#menuLink.menu-link
+        {:href "#menu"}
+        [:span]]
+       [:div#menu
+        [:div.pure-menu
+         [:ul.pure-menu-list
+          [:li.pure-menu-item [:a.pure-menu-link {:href "/about"} "About"]]
+          [:li.pure-menu-item [:a.pure-menu-link {:href "/bookings"} "Bookings"]]
+          [:ul.pure-menu [:span [:a.pure-menu-link
+                                 {:href "/events"
+                                  :on-click #(re-frame/dispatch [:display-filtered-events])} "Events"]]
+           [:li.pure-menu-item [:a {:href "/events"
+                                    :on-click #(re-frame/dispatch [:display-filtered-events >])}
+                                [:span "upcoming"]]]
+           [:li.pure-menu-item [:a {:href "/events"
+                                    :on-click #(re-frame/dispatch [:display-filtered-events <])}
+                                [:span "past-events"]]]]
+          [:li.pure-menu-item [:a.pure-menu-link {:href "/merch"} "Merch"]]
+          [:li.pure-menu-item [:a.pure-menu-link {:href "/contact"} "Contact"]]]]]
+       [:div.main
+        [:div.content
+         [show-view @active-view]]]])))

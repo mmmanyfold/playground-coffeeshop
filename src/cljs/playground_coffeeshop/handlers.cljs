@@ -30,19 +30,21 @@
     ;; merge :includes :assets with :event :item data
     (let [items (:items response)
           assets (get-in response [:includes :Asset])
-          urls (mapv #(get-in % [:fields :file :url]) assets)
-          items_mod (into [] (map-indexed (fn [i k] (assoc (:fields k)
-                                                      :img-src (get urls i))) items))
+          items_mod (into [] (map-indexed (fn [i k] (let [item-id (get-in k [:fields :image :sys :id])
+                                                          img (filterv #(= (get-in % [:sys :id]) item-id) assets)
+                                                          url (get-in (first img) [:fields :file :url])]
+                                                      (assoc (:fields k)
+                                                        :img-src url))) items))
           _response (assoc response :items items_mod)]
       (-> db
-          (assoc :cms-data _response)))))
+          (assoc :cms-events _response)))))
 
 (re-frame/register-handler
   :bad-response
   (fn
     [db [_ response]]
     (-> db
-        (assoc :cms-data response))))
+        (assoc :cms-events response))))
 
 (re-frame/register-handler
   :set-active-view
@@ -50,31 +52,18 @@
     (assoc db :active-view active-view)))
 
 (re-frame/register-handler
-  :display-upcoming-events
+  :display-filtered-events
   (fn
-    [db [_ _]]
-    (let [nowish (.unix (js/moment))
-          items (get-in db [:cms-data :items])
-          upcoming (filterv (fn [e]
-                                 (let [start (:start e)
-                                       unix-start (.unix (js/moment start))]
-                                   (> unix-start nowish)))
-                               items)
-          _ (prn upcoming)]
-      (-> db
-          (assoc :upcoming-events upcoming)))))
-
-(re-frame/register-handler
-  :display-past-events
-  (fn
-    [db [_ _]]
-    (let [nowish (.unix (js/moment))
-          items (get-in db [:cms-data :items])
-          past (filterv (fn [e]
+    [db [_ op]]
+    (let [items (get-in db [:cms-events :items])]
+      (let [nowish (.unix (js/moment))
+            custom-events (filterv
+                            (fn [e]
                               (let [start (:start e)
                                     unix-start (.unix (js/moment start))]
-                                (< unix-start nowish)))
-                            items)
-          _ (prn past)]
-      (-> db
-          (assoc :past-events past)))))
+                                (if-not op
+                                  db
+                                  (apply op [unix-start nowish]))))
+                            items)]
+        (-> db
+            (assoc :filtered-events custom-events))))))

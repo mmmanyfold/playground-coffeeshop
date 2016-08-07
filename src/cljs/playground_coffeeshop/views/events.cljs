@@ -2,11 +2,9 @@
   (:require [re-frame.core :as re-frame]
             [playground-coffeeshop.components.event :refer [event-component]]))
 
-;; about
-
 (defn events-view []
-  (let [cms-data (re-frame/subscribe [:cms-data])
-        _ (re-frame/dispatch [:get-cms-data])]
+  (let [_ (re-frame/dispatch [:get-cms-data])
+        events (re-frame/subscribe [:filtered-events])]
     (fn []
       [:div.events
        [:div "Events:"
@@ -17,6 +15,6 @@
          "- Image or flier"]
         [:p "Past events"]]
        [:div
-        (for [item (:items @cms-data)]
+        (for [item @events]
           ^{:key (gensym "event-")}
           [event-component item])]])))
