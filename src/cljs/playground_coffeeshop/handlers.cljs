@@ -31,8 +31,11 @@
     (let [items (:items response)
           assets (get-in response [:includes :Asset])
           items_mod (into [] (map-indexed (fn [i k] (let [item-id (get-in k [:fields :image :sys :id])
-                                                          img (filterv #(= (get-in % [:sys :id]) item-id) assets)
-                                                          url (get-in (first img) [:fields :file :url])]
+                                                          img (some #(when
+                                                                      (= (get-in % [:sys :id]) item-id)
+                                                                      %)
+                                                                    assets)
+                                                          url (get-in img [:fields :file :url])]
                                                       (assoc (:fields k)
                                                         :img-src url))) items))
           _response (assoc response :items items_mod)]
