@@ -26,18 +26,18 @@
   :process-response
   (fn
     [db [_ response]]
-    ;; normalize data
+    ;; normalizes data
     ;; merge :includes :assets with :event :item data
     (let [items (:items response)
           assets (get-in response [:includes :Asset])
-          items_mod (into [] (map-indexed (fn [i k] (let [item-id (get-in k [:fields :image :sys :id])
-                                                          img (some #(when
-                                                                      (= (get-in % [:sys :id]) item-id)
-                                                                      %)
-                                                                    assets)
-                                                          url (get-in img [:fields :file :url])]
-                                                      (assoc (:fields k)
-                                                        :img-src url))) items))
+          items_mod (mapv (fn [k] (let [item-id (get-in k [:fields :image :sys :id])
+                                        img (some #(when
+                                                    (= (get-in % [:sys :id]) item-id)
+                                                    %)
+                                                  assets)
+                                        url (get-in img [:fields :file :url])]
+                                    (assoc (:fields k)
+                                      :img-src url))) items)
           _response (assoc response :items items_mod)]
       (-> db
           (assoc :cms-events _response)))))
