@@ -7,5 +7,12 @@
         img-src (get-in data [:img-src])
         cost (get-in data [:cost])
         details (get-in data [:description])]
-    [:div [:h3 title]
-     [:img {:src img-src}]]))
+    [:div
+     [:h3 title]
+     [:div
+      start [:br]
+      end [:br]
+      cost [:br]
+      [:small details] [:br]]
+     [:img {:src img-src}]
+     [:hr]]))

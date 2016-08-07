@@ -7,14 +7,7 @@
         events (re-frame/subscribe [:filtered-events])]
     (fn []
       [:div.events
-       [:div "Events:"
-        [:p "Upcoming events" [:br]
-         "- Title" [:br]
-         "- Date & time" [:br]
-         "- Description" [:br]
-         "- Image or flier"]
-        [:p "Past events"]]
-       [:div
-        (for [item @events]
-          ^{:key (gensym "event-")}
-          [event-component item])]])))
+       [:h2 "Events:"]
+       (for [item @events]
+         ^{:key (gensym "event-")}
+         [event-component item])])))
