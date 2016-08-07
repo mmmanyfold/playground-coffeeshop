@@ -3,19 +3,14 @@
     (:require [re-frame.core :as re-frame]))
 
 (re-frame/register-sub
-  :cms-data
+  :cms-events
   (fn [db]
-    (reaction (:cms-data @db))))
+    (reaction (:cms-events @db))))
 
 (re-frame/register-sub
-  :upcoming-events
+  :filtered-events
   (fn [db]
-    (reaction (:upcoming-events @db))))
-
-(re-frame/register-sub
-  :past-events
-  (fn [db]
-    (reaction (:past-events @db))))
+    (reaction (:filtered-events @db))))
 
 (re-frame/register-sub
  :active-view
