@@ -34,14 +34,22 @@
           [:li.pure-menu-item [:a.pure-menu-link {:href "/about"} "About"]]
           [:li.pure-menu-item [:a.pure-menu-link {:href "/bookings"} "Bookings"]]
           [:ul.pure-menu [:span [:a.pure-menu-link
-                                 {:href "/events"
+                                 {:href     "/events"
                                   :on-click #(re-frame/dispatch [:display-filtered-events])} "Events"]]
-           [:li.pure-menu-item [:a {:href "/events"
-                                    :on-click #(re-frame/dispatch [:display-filtered-events >])}
-                                [:span "upcoming"]]]
-           [:li.pure-menu-item [:a {:href "/events"
-                                    :on-click #(re-frame/dispatch [:display-filtered-events <])}
-                                [:span "past-events"]]]]
+           [:li.pure-menu-item
+            {:class (if (= @active-view :events-view)
+                      "events-submenu-show"
+                      "events-submenu-hide")}
+            [:a {:href     "/events"
+                 :on-click #(re-frame/dispatch [:display-filtered-events >])}
+             [:span "upcoming"]]]
+           [:li.pure-menu-item
+            {:class (if (= @active-view :events-view)
+                      "events-submenu-show"
+                      "events-submenu-hide")}
+            [:a {:href     "/events"
+                 :on-click #(re-frame/dispatch [:display-filtered-events <])}
+             [:span "past-events"]]]]
           [:li.pure-menu-item [:a.pure-menu-link {:href "/merch"} "Merch"]]
           [:li.pure-menu-item [:a.pure-menu-link {:href "/contact"} "Contact"]]]]]
        [:div.main

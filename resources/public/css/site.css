@@ -87,6 +87,12 @@ a:hover {
     display: none;
   }
 }
+li.events-submenu-hide {
+  display: none !important;
+}
+li.events-submenu-show {
+  display: block !important;
+}
 @font-face {
   font-family: BrushScriptMT;
   src: url("http://db.onlinewebfonts.com/t/33bc06ea126d3ff79886277122f1f510.ttf");
