@@ -14,5 +14,6 @@
       end [:br]
       cost [:br]
       [:small details] [:br]]
-     [:img {:src img-src}]
+     [:img {:src   img-src
+            :width "100%"}]
      [:hr]]))

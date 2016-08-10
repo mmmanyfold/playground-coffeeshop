@@ -10,7 +10,11 @@
                  [cljs-ajax "0.5.8"]
                  [ring "1.4.0"]
                  [venantius/accountant "0.1.7"]
-                 [cljsjs/moment "2.10.6-4"]]
+                 [cljsjs/moment "2.10.6-4"]
+                 [reagent-forms "0.5.24"]
+                 [json-html "0.4.0"]
+                 [reanimated "0.4.0"]
+                 [cljsjs/jquery "2.2.2-0"]]
 
   :plugins [[lein-cljsbuild "1.1.3"]
             [lein-less "1.7.5"]
