@@ -2,4 +2,5 @@
 
 (def default-db
   {:cms-events []
-   :filtered-events []})
+   :filtered-events []
+   :on-mailer-process-event nil})

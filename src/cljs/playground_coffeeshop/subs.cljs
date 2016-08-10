@@ -16,3 +16,8 @@
  :active-view
  (fn [db _]
    (reaction (:active-view @db))))
+
+(re-frame/register-sub
+  :on-mailer-process-event
+  (fn [db _]
+    (reaction (:on-mailer-process-event @db))))

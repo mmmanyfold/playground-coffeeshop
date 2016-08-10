@@ -67,3 +67,9 @@ export AWS_SECRET_ACCESS_KEY=...
 ```
 lein s3-static-deploy
 ```
+
+## Atom watcher
+
+```
+(add-watch app-state :logger #(-> %4 clj->js js/console.log))
+```

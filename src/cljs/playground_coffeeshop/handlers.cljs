@@ -1,8 +1,9 @@
 (ns playground-coffeeshop.handlers
   (:require [re-frame.core :as re-frame]
             [playground-coffeeshop.db :as db]
-            [ajax.core :refer [GET]]
-            [cljsjs.moment]))
+            [ajax.core :refer [GET POST]]
+            [cljsjs.moment]
+            [json-html.core :refer [edn->html]]))
 
 (defonce events-space "vwupty4rcx24")
 (defonce cdn-token "bfcc4593881abafaed07ce4b74f384cf82bf693a300fb1a4c0bffc05d6bfdaa9")
@@ -18,12 +19,47 @@
     (GET (str "https://cdn.contentful.com/spaces/" events-space "/entries?access_token=" cdn-token)
          {:response-format :json
           :keywords?       true
-          :handler         #(re-frame/dispatch [:process-response %1])
-          :error-handler   #(re-frame/dispatch [:bad-response %1])})
+          :handler         #(re-frame/dispatch [:process-contentful-ok-response %1])
+          :error-handler   #(re-frame/dispatch [:process-contenful-error-response %1])})
     db))
 
 (re-frame/register-handler
-  :process-response
+  :post-email
+  (fn [db [_ body]]
+    (POST "http://playground-coffeeshop-mailer.apps.aterial.org/api/mail"
+          {:response-format :json
+           :keywords?       true
+           :params          {:from    (:email body)
+                             :to      "events@playgroundcoffeeshop.com"
+                             :subject "new booking request"
+                             :body    (edn->html body)}
+           :handler         #(re-frame/dispatch [:process-mailer-ok-response %])
+           :error-handler   #(re-frame/dispatch [:process-mailer-error-response %])})
+    db))
+
+(re-frame/register-handler
+  :process-mailer-ok-response
+  (fn
+    [db [_ _]]
+    (-> db
+        (assoc :on-mailer-process-event :success))))
+
+(re-frame/register-handler
+  :process-mailer-error-response
+  (fn
+    [db [_ _]]
+    (-> db
+        (assoc :on-mailer-process-event :error))))
+
+(re-frame/register-handler
+  :reset-mailer-process-event
+  (fn
+    [db [_ _]]
+    (-> db
+        (assoc :on-mailer-process-event nil))))
+
+(re-frame/register-handler
+  :process-contentful-ok-response
   (fn
     [db [_ response]]
     ;; normalizes data
@@ -45,7 +81,7 @@
           (assoc :cms-events _response)))))
 
 (re-frame/register-handler
-  :bad-response
+  :process-contenful-error-response
   (fn
     [db [_ response]]
     (-> db
