@@ -33,7 +33,7 @@
          [:ul.pure-menu-list
           [:li.pure-menu-item [:a.pure-menu-link {:href "/about"} "About"]]
           [:li.pure-menu-item [:a.pure-menu-link {:href "/bookings"} "Bookings"]]
-          [:ul.pure-menu [:span [:a.pure-menu-link
+          [:ul.pure-menu.events-menu [:span [:a.pure-menu-link
                                  {:href     "/events"
                                   :on-click #(re-frame/dispatch [:display-filtered-events])} "Events"]]
            [:li.pure-menu-item

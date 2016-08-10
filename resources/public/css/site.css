@@ -97,6 +97,12 @@ li.events-submenu-show {
   font-family: BrushScriptMT;
   src: url("http://db.onlinewebfonts.com/t/33bc06ea126d3ff79886277122f1f510.ttf");
 }
+ul.pure-menu.events-menu {
+  padding-left: inherit;
+}
+ul.pure-menu.events-menu li {
+  padding-left: 40px;
+}
 /*
 Add transition to containers so they can push in and out.
 */
