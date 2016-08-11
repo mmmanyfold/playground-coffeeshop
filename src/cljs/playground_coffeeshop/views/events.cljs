@@ -8,6 +8,7 @@
     (fn []
       [:div.events
        [:h2 "Events:"]
-       (for [item @events]
-         ^{:key (gensym "event-")}
-         [event-component item])])))
+       [:div.flex-row-wrap
+         (for [item @events]
+           ^{:key (gensym "event-")}
+           [event-component item])]])))

@@ -51,6 +51,21 @@ a:hover {
   -webkit-justify-content: space-between;
   justify-content: space-between;
 }
+.flex-grid {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+.event-thumb {
+  width: 40%;
+  margin: 5%;
+}
+.event-thumb img {
+  width: 100%;
+}
 .header {
   margin-bottom: 2em;
 }
@@ -123,11 +138,11 @@ This is the parent `<div>` that contains the menu and the content area.
   padding-left: 0;
 }
 #layout.active #menu {
-  left: 150px;
-  width: 150px;
+  left: 200px;
+  width: 200px;
 }
 #layout.active .menu-link {
-  left: 150px;
+  left: 200px;
 }
 /*
 The `#menu` `<div>` is the parent `<div>` that contains the `.pure-menu` that
@@ -135,9 +150,9 @@ appears on the left side of the page.
 */
 #menu {
   background: #fff;
-  margin-left: -150px;
+  margin-left: -200px;
   /* "#menu" width */
-  width: 150px;
+  width: 200px;
   display: inline-block;
   vertical-align: top;
   z-index: 1000;
@@ -231,20 +246,20 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 */
 @media (min-width: 48em) {
   #layout {
-    padding-left: 150px;
+    padding-left: 200px;
     /* left col width "#menu" */
     left: 0;
   }
   #menu {
-    left: 150px;
+    left: 200px;
   }
   .menu-link {
     position: fixed;
-    left: 150px;
+    left: 200px;
     display: none;
   }
   #layout.active .menu-link {
-    left: 150px;
+    left: 200px;
   }
 }
 @media (max-width: 48em) {
@@ -256,6 +271,6 @@ Hides the menu at `48em`, but modify this based on your app's needs.
   */
   #layout.active {
     position: relative;
-    left: 150px;
+    left: 200px;
   }
 }

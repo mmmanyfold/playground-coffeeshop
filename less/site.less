@@ -63,6 +63,25 @@ a:hover {
   justify-content: space-between;
 }
 
+.flex-grid {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+// event component
+
+.event-thumb {
+  width: 40%;
+  margin: 5%;
+  img {
+    width: 100%;
+  }
+}
+
 // header component
 
 .header {
@@ -147,12 +166,12 @@ This is the parent `<div>` that contains the menu and the content area.
 }
 
 #layout.active #menu {
-  left: 150px;
-  width: 150px;
+  left: 200px;
+  width: 200px;
 }
 
 #layout.active .menu-link {
-  left: 150px;
+  left: 200px;
 }
 
 /*
@@ -162,8 +181,8 @@ appears on the left side of the page.
 
 #menu {
   background: #fff;
-  margin-left: -150px; /* "#menu" width */
-  width: 150px;
+  margin-left: -200px; /* "#menu" width */
+  width: 200px;
   display: inline-block;
   vertical-align: top;
   // position: fixed;
@@ -272,22 +291,22 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 */
 @media (min-width: 48em) {
   #layout {
-    padding-left: 150px; /* left col width "#menu" */
+    padding-left: 200px; /* left col width "#menu" */
     left: 0;
   }
 
   #menu {
-    left: 150px;
+    left: 200px;
   }
 
   .menu-link {
     position: fixed;
-    left: 150px;
+    left: 200px;
     display: none;
   }
 
   #layout.active .menu-link {
-    left: 150px;
+    left: 200px;
   }
 }
 
@@ -300,6 +319,6 @@ Hides the menu at `48em`, but modify this based on your app's needs.
   */
   #layout.active {
     position: relative;
-    left: 150px;
+    left: 200px;
   }
 }

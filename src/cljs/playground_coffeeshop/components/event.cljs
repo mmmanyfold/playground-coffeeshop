@@ -7,7 +7,7 @@
         img-src (get-in data [:img-src])
         cost (get-in data [:cost])
         details (get-in data [:description])]
-    [:div
+    [:div.event-thumb
      [:h3 title]
      [:div
       start [:br]
