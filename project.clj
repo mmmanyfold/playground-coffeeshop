@@ -14,7 +14,8 @@
                  [reagent-forms "0.5.24"]
                  [json-html "0.4.0"]
                  [reanimated "0.4.0"]
-                 [cljsjs/jquery "2.2.2-0"]]
+                 [cljsjs/jquery "2.2.2-0"]
+                 [tailrecursion/momentjs-2.6.0 "0.1.0"]]
 
   :plugins [[lein-cljsbuild "1.1.3"]
             [lein-less "1.7.5"]
