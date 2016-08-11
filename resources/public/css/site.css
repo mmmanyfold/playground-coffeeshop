@@ -1,3 +1,4 @@
+@import url('http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 body {
   color: black;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
@@ -104,6 +105,64 @@ a:hover {
   .header .right {
     display: none;
   }
+}
+.footer {
+  font-size: 0.9em;
+  width: 100%;
+  padding: 0.2em 0 1em 0;
+}
+.info {
+  margin-left: 0.8em;
+}
+.social {
+  text-align: center;
+  margin-left: 0.8em;
+  margin-right: 0.2em;
+}
+.socialbtns,
+.socialbtns ul,
+.socialbtns li {
+  margin: 0;
+  padding: 3px;
+}
+.socialbtns li {
+  list-style: none outside none;
+}
+.socialbtns .fa {
+  width: 30px;
+  height: 22px;
+  color: #000;
+  background-color: #FFF;
+  border: 1px solid #000;
+  padding-top: 8px;
+  border-radius: 22px;
+  -moz-border-radius: 22px;
+  -webkit-border-radius: 22px;
+  -o-border-radius: 22px;
+}
+.socialbtns .fa:hover {
+  color: #FFF;
+  background-color: #000;
+  border: 1px solid #000;
+  text-decoration: none;
+}
+.subscribe input#mce-EMAIL.required.email {
+  border: solid 1px black;
+  line-height: 1.3em;
+  width: 100%;
+  outline: none;
+}
+.subscribe .mc-hidden {
+  position: absolute;
+  left: -5000px;
+}
+.subscribe input#mc-embedded-subscribe.button {
+  border: none;
+  background: none;
+  outline: none;
+}
+.subscribe div.clear {
+  text-align: right;
 }
 li.events-submenu-hide {
   display: none !important;
