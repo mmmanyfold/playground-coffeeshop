@@ -1,4 +1,8 @@
 @import url('http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+@font-face {
+  font-family: BrushScriptMT;
+  src: url("http://db.onlinewebfonts.com/t/33bc06ea126d3ff79886277122f1f510.ttf");
+}
 
 body {
   color: black;
@@ -130,9 +134,12 @@ a:hover {
   font-size: 0.9em;
   width: 100%;
   padding: 0.2em 0 1em 0;
+  @media (max-width: 30em) {
+    font-size: 0.7em;
+  }
 }
 .info {
-  margin-left: 0.8em;
+  margin: 0 1.5em 0 0.8em ;
 }
 .social {
   text-align: center;
@@ -157,6 +164,11 @@ a:hover {
 	-moz-border-radius: 22px;
 	-webkit-border-radius: 22px;
 	-o-border-radius: 22px;
+  @media (max-width: 30em) {
+    width: 21px;
+    height: 16px;
+    padding-top: 5px;
+  }
 }
 .socialbtns .fa:hover {
 	color: #FFF;
@@ -194,11 +206,6 @@ li.events-submenu-hide {
 
 li.events-submenu-show {
   display: block !important;
-}
-
-@font-face {
-  font-family: BrushScriptMT;
-  src: url("http://db.onlinewebfonts.com/t/33bc06ea126d3ff79886277122f1f510.ttf");
 }
 
 // BEGIN PURE STYLING //

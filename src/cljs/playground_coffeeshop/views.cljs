@@ -8,5 +8,6 @@
     [:div
      [header-component]
      [menu-component]
+     [:br]
      [:hr]
      [footer-component]]))
