@@ -46,7 +46,7 @@
             (re-frame/dispatch [:set-active-view :bookings-view]))
   (defroute "/contact" []
             (re-frame/dispatch [:set-active-view :contact-view]))
-  (defroute "/merch" []
+  (defroute "/shop" []
             (aset js/window.location "href" "http://shop.playgroundcoffeeshop.com/"))
   ;; --------------------
   (hook-browser-navigation!))

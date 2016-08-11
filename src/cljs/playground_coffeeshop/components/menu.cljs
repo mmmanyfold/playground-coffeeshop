@@ -50,7 +50,7 @@
             [:a {:href     "/events"
                  :on-click #(re-frame/dispatch [:display-filtered-events <])}
              [:span "past-events"]]]]
-          [:li.pure-menu-item [:a.pure-menu-link {:href "/merch"} "Merch"]]
+          [:li.pure-menu-item [:a.pure-menu-link {:href "/shop"} "Shop"]]
           [:li.pure-menu-item [:a.pure-menu-link {:href "/contact"} "Contact"]]]]]
        [:div.main
         [:div.content
