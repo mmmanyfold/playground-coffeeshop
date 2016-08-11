@@ -63,22 +63,24 @@ a:hover {
   justify-content: space-between;
 }
 
-.flex-grid {
+.flex-row-wrap {
   display: -webkit-flex;
   display: flex;
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
 }
 
-// event component
+// events
+
+.events {
+  width: 100%;
+}
 
 .event-thumb {
   width: 40%;
   margin: 5%;
-  img {
-    width: 100%;
+  @media (max-width: 48em) {
+    width: 95%;
   }
 }
 
@@ -137,13 +139,6 @@ li.events-submenu-show {
 
 // BEGIN PURE STYLING //
 
-ul.pure-menu.events-menu {
-  padding-left: inherit;
-  li {
-    padding-left: 40px;
-  }
-}
-
 /*
 Add transition to containers so they can push in and out.
 */
@@ -185,10 +180,6 @@ appears on the left side of the page.
   width: 200px;
   display: inline-block;
   vertical-align: top;
-  // position: fixed;
-  // top: 0;
-  // left: 0;
-  // bottom: 0;
   z-index: 1000; /* so the menu or its navicon stays above all content */
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -207,11 +198,27 @@ All anchors inside the menu should be styled like this.
   margin-bottom: 0.5em;
 }
 
+ul.pure-menu.events-menu {
+  padding-left: inherit;
+  li {
+    padding-left: 40px;
+    span {
+      padding-right: 10px;
+    }
+  }
+}
+
+li.pure-menu-item.last {
+  margin-bottom: 1em;
+}
+
 /*
 Change color of the anchor links on hover/focus.
 */
 #menu .pure-menu li a:hover,
-#menu .pure-menu li a:focus {
+#menu .pure-menu li a:focus,
+#menu .pure-menu ul a:hover,
+#menu .pure-menu ul a:focus {
   color: #fff;
   background: #000;
 }

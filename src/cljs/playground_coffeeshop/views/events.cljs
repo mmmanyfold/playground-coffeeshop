@@ -1,6 +1,6 @@
 (ns playground-coffeeshop.views.events
   (:require [re-frame.core :as re-frame]
-            [playground-coffeeshop.components.event :refer [event-component]]))
+            [playground-coffeeshop.components.event-thumb :refer [event-thumb-component]]))
 
 (defn events-view []
   (let [_ (re-frame/dispatch [:get-cms-data])
@@ -11,4 +11,4 @@
        [:div.flex-row-wrap
          (for [item @events]
            ^{:key (gensym "event-")}
-           [event-component item])]])))
+           [event-thumb-component item])]])))
