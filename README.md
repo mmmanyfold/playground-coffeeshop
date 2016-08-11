@@ -65,6 +65,7 @@ export AWS_ACCESS_KEY_ID=...
 export AWS_SECRET_ACCESS_KEY=...
 
 ```
+lein cljsbuild once min # compiles CLJS with min profile
 lein s3-static-deploy
 ```
 
