@@ -5,8 +5,8 @@
 (defn event-thumb-component [data]
   (let [{:keys [title start end img-src cost description]} data
         formatted-start-date (.format (js/moment start)
-                                      (if (== (get (str/split start #"T") 1) (get (str/split end #"T") 1))
-                                        "MMM D, YYYY" "MMM D"))
+                                      (if (= (first (str/split start #"T")) (first (str/split end #"T")))
+                                          "MMM D, YYYY" "MMM D"))
         formatted-end-date (.format (js/moment end) "MMM D, YYYY")
         formatted-start-time (.format (js/moment start) "LT")
         formatted-end-time (.format (js/moment end) "LT")]
