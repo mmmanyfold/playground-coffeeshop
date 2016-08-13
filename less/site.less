@@ -141,10 +141,19 @@ a:hover {
 .info {
   margin: 0 1.5em 0 0.8em ;
 }
+
+.subscribe-and-social {
+  max-width: 55%;
+}
+
 .social {
   text-align: center;
   margin-left: 0.8em;
   margin-right: 0.2em;
+  @media (max-width: 30em) {
+    margin-left: 0.4em;
+    margin-right: 0;
+  }
 }
 .socialbtns, .socialbtns ul, .socialbtns li {
   margin: 0;
@@ -178,11 +187,13 @@ a:hover {
 }
 
 .subscribe {
+  div#mc_embed_signup_scroll, b {
+  }
   input#mce-EMAIL.required.email {
     border: solid 1px black;
     line-height:1.3em;
-    width:100%;
     outline:none;
+    margin-left: auto;
   }
   .mc-hidden {
     position: absolute;
