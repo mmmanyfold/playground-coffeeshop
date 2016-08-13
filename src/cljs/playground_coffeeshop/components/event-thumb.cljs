@@ -16,7 +16,10 @@
             :width "100%"}]
      [:h3 title]
      [:div
-      formatted-start-date " – " formatted-end-date [:br]
+      (if (= formatted-start-date formatted-end-date)
+        formatted-start-date
+        [:span formatted-start-date " – " formatted-end-date])
+      [:br]
       formatted-start-time " – " formatted-end-time [:br]
       cost [:br]]
      [:hr]]))
