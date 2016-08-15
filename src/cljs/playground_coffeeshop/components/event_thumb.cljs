@@ -1,6 +1,5 @@
 (ns playground-coffeeshop.components.event_thumb
-  (:require [reagent.core :as reagent]
-            [cljsjs.moment]
+  (:require [cljsjs.moment]
             [clojure.string :as str]))
 
 (defn event-thumb-component [data]
