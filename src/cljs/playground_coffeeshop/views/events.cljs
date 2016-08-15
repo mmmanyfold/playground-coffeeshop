@@ -1,6 +1,6 @@
 (ns playground-coffeeshop.views.events
   (:require [re-frame.core :as re-frame]
-            [playground-coffeeshop.components.event-thumb :refer [event-thumb-component]]))
+            [playground-coffeeshop.components.event_thumb :refer [event-thumb-component]]))
 
 (defn events-view []
   (let [_ (re-frame/dispatch [:get-cms-data])
