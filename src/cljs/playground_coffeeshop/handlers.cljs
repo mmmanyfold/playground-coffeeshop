@@ -115,7 +115,7 @@
 (re-frame/register-handler
  :render-event-details
  (fn [db [action id]]
-   (let []
-     (prn (str  action ":" id))
-
-     (assoc db :on-event-details-render id))))
+   (let [ids (mapv #(get-in % [:image :sys :id]) (:filtered-events db))
+         match (some #(when (= id %) %) ids)
+         match-event (some #(when (= match (get-in % [:image :sys :id])) %) (:filtered-events db))]
+     (assoc db :on-event-details-render match-event))))
