@@ -21,3 +21,8 @@
   :on-mailer-process-event
   (fn [db _]
     (reaction (:on-mailer-process-event @db))))
+
+(re-frame/register-sub
+  :on-event-details-render
+  (fn [db _]
+    (reaction (:on-event-details-render @db))))

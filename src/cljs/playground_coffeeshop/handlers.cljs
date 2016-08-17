@@ -1,5 +1,6 @@
 (ns playground-coffeeshop.handlers
   (:require [re-frame.core :as re-frame]
+            [secretary.core :as secretary]
             [playground-coffeeshop.db :as db]
             [ajax.core :refer [GET POST]]
             [cljsjs.moment]
@@ -89,7 +90,9 @@
 
 (re-frame/register-handler
   :set-active-view
-  (fn [db [_ active-view]]
+  (fn [db [_ active-view id]]
+    (when (= active-view :event-view)
+      (re-frame/dispatch [:render-event-details id]))
     (assoc db :active-view active-view)))
 
 (re-frame/register-handler
@@ -108,3 +111,11 @@
                             items)]
         (-> db
             (assoc :filtered-events custom-events))))))
+
+(re-frame/register-handler
+ :render-event-details
+ (fn [db [action id]]
+   (let []
+     (prn (str  action ":" id))
+
+     (assoc db :on-event-details-render id))))

@@ -9,6 +9,8 @@
       [:div.events
        [:h2 "Events:"]
        [:div.flex-row-wrap
-         (for [item @events]
+         (for [item @events
+               :let [id  (get-in item [:image :sys :id])]]
            ^{:key (gensym "event-")}
-           [event-thumb-component item])]])))
+           [:a.event-link {:href (str "/event/" id)}
+            [event-thumb-component item]])]])))
