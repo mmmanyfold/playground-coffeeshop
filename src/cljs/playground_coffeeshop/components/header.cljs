@@ -12,7 +12,7 @@
 (defonce HEIGHT 200)
 (defonce HW (/ WIDTH 2))
 (defonce HH (/ WIDTH 2))
-(defonce color-const
+(defonce COLOR
          {:render {:fillStyle   "black"
                    :strokeStyle "black"
                    :lineWidth   3}})
@@ -28,10 +28,10 @@
 (def projectile (.circle Bodies (- HW 75) 0 50))
 
 (def catapult (.rectangle Bodies HW (- HH 100)
-                          200 10 (clj->js color-const)))
+                          200 10 (clj->js COLOR)))
 
 (def triangle (.rectangle Bodies HW (- HH 25)
-                          20 20 (clj->js (assoc color-const
+                          20 20 (clj->js (assoc COLOR
                                            :isStatic true))))
 
 (defn header-component []
@@ -44,7 +44,6 @@
                              (.create Render #js {:element (.querySelector js/document "#canvas")
                                                   :engine  engine
                                                   :options #js {:wireframes          false
-                                                                :wireframeBackground "transparent"
                                                                 :background          "transparent"
                                                                 :width               WIDTH
                                                                 :height              HEIGHT}})]
