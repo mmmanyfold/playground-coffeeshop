@@ -48,5 +48,9 @@
             (re-frame/dispatch [:set-active-view :contact-view]))
   (defroute "/shop" []
             (aset js/window.location "href" "http://shop.playgroundcoffeeshop.com/"))
+  (defroute "/:id" {:as params}
+            (re-frame/dispatch [:set-active-view :event-view (:id params)]))
+
+
   ;; --------------------
   (hook-browser-navigation!))

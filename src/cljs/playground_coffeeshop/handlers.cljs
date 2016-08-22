@@ -1,5 +1,6 @@
 (ns playground-coffeeshop.handlers
   (:require [re-frame.core :as re-frame]
+            [secretary.core :as secretary]
             [playground-coffeeshop.db :as db]
             [ajax.core :refer [GET POST]]
             [cljsjs.moment]
@@ -89,7 +90,9 @@
 
 (re-frame/register-handler
   :set-active-view
-  (fn [db [_ active-view]]
+  (fn [db [_ active-view id]]
+    (when (= active-view :event-view)
+      (re-frame/dispatch [:render-event-details id]))
     (assoc db :active-view active-view)))
 
 (re-frame/register-handler
@@ -106,5 +109,24 @@
                                   db
                                   (apply op [unix-start nowish]))))
                             items)]
+        (when-let [id (:details-render-id db)]
+          (js/setTimeout #(re-frame/dispatch [:render-event-details id]) 1000))
         (-> db
             (assoc :filtered-events custom-events))))))
+
+(re-frame/register-handler
+  :render-event-details
+  (fn [db [_ id]]
+    (if-not (empty? (:filtered-events db))
+      (let [filtered-events (:filtered-events db)
+            ids (mapv #(get-in % [:image :sys :id]) filtered-events)
+            match (some #(when (= id %) %) ids)
+            match-event (some #(when (= match (get-in % [:image :sys :id])) %) (:filtered-events db))]
+        (assoc db :on-event-details-render match-event))
+      db)))
+
+(re-frame/register-handler
+  :register-event-details-id
+  (fn [db [_ id]]
+    (-> db
+        (assoc :details-render-id id))))

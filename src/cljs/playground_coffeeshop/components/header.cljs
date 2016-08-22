@@ -2,18 +2,18 @@
   (:require [reagent.core :as reagent]))
 
 ; module aliases
-(def Engine (.-Engine js/Matter))
-(def Render (.-Render js/Matter))
-(def World (.-World js/Matter))
-(def Bodies (.-Bodies js/Matter))
-
+;(def Engine (.-Engine js/Matter))
+;(def Render (.-Render js/Matter))
+;(def World (.-World js/Matter))
+;(def Bodies (.-Bodies js/Matter))
+;
 ; create an engine
-(def engine (.create Engine))
+;(def engine (.create Engine))
 
 ; create two boxes and a ground
-(def boxA (.rectangle Bodies 400, 200, 80, 80))
-(def boxB (.rectangle Bodies 450, 50, 80, 80))
-(def ground (.rectangle Bodies 400, 610, 810, 60, #js {:isStatic true}))
+;(def boxA (.rectangle Bodies 400, 200, 80, 80))
+;(def boxB (.rectangle Bodies 450, 50, 80, 80))
+;(def ground (.rectangle Bodies 400, 610, 810, 60, #js {:isStatic true}))
 
 (defn header-component []
   (let []

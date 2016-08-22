@@ -65,12 +65,12 @@ a:hover {
 .events {
   width: 100%;
 }
-.event-thumb {
+.event-link {
   width: 40%;
   margin: 5%;
 }
 @media (max-width: 48em) {
-  .event-thumb {
+  .event-link {
     width: 95%;
   }
 }
