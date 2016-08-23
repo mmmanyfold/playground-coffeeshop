@@ -68,13 +68,22 @@
     (let [items (:items response)
           assets (get-in response [:includes :Asset])
           items_mod (mapv (fn [k] (let [item-id (get-in k [:fields :image :sys :id])
+                                        photos (get-in k [:fields :photos])
+                                        photo-ids (mapv #(get-in % [:sys :id]) photos)
+
                                         img (some #(when
                                                     (= (get-in % [:sys :id]) item-id)
                                                     %)
                                                   assets)
+
+                                        photo-urls (mapv (fn [id]
+                                                          (some #(when (= id (get-in % [:sys :id]))
+                                                                   (get-in % [:fields :file :url]))
+                                                                assets)) photo-ids)
+
                                         url (get-in img [:fields :file :url])]
                                     (assoc (:fields k)
-                                      :img-src url))) items)
+                                      :img-src url :photo-urls photo-urls))) items)
           _response (assoc response :items items_mod)]
       (when (empty? (:filtered-events db))
         (re-frame/dispatch [:display-filtered-events]))

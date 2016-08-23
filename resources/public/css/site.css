@@ -25,6 +25,9 @@ a:hover {
     width: 100%;
   }
 }
+.text-center {
+  text-align: center;
+}
 .main {
   width: 100%;
   display: inline-block;
@@ -73,6 +76,14 @@ a:hover {
   .event-link {
     width: 95%;
   }
+}
+.event-photo {
+  width: 40%;
+  margin: 5%;
+  align-self: center;
+}
+.event-photo img {
+  width: 100%;
 }
 .header {
   margin-bottom: 2em;
