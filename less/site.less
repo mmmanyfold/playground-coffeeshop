@@ -1,4 +1,5 @@
 @import url('http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+
 @font-face {
   font-family: BrushScriptMT;
   src: url("http://db.onlinewebfonts.com/t/33bc06ea126d3ff79886277122f1f510.ttf");
@@ -107,6 +108,7 @@ a:hover {
 
 .header {
   // width: 100%;
+  height: 250px;
   margin-bottom: 2em;
   @media (max-width: 48em) {
     margin-bottom: 0.5em;
@@ -114,10 +116,9 @@ a:hover {
 
   .left {
     width: 45%;
-
-    img.logo {
-      width: 100%;
-    }
+    //img.logo {
+    //  width: 100%;
+    //}
     @media (max-width: 48em) {
       width: inherit;
       padding: 0 0.5em 0 0.2em;
@@ -132,12 +133,18 @@ a:hover {
       width: 40%;
       padding-top: 20px;
     }
-    img.temp {
-      width: 27%;
-    }
     @media (max-width: 48em) {
       display: none;
     }
+  }
+}
+
+
+#canvas {
+  position: absolute;
+  right: 12.5%;
+  @media (max-width: 48em) {
+    display: none;
   }
 }
 
@@ -151,8 +158,9 @@ a:hover {
     font-size: 0.7em;
   }
 }
+
 .info {
-  margin: 0 1.5em 0 0.8em ;
+  margin: 0 1.5em 0 0.8em;
 }
 
 .subscribe-and-social {
@@ -168,34 +176,38 @@ a:hover {
     margin-right: 0;
   }
 }
+
 .socialbtns, .socialbtns ul, .socialbtns li {
   margin: 0;
   padding: 3px;
 }
+
 .socialbtns li {
-    list-style: none outside none;
+  list-style: none outside none;
 }
+
 .socialbtns .fa {
-	width: 30px;
+  width: 30px;
   height: 22px;
-	color: #000;
-	background-color: #FFF;
-	border: 1px solid #000;
-	padding-top: 8px;
-	border-radius: 22px;
-	-moz-border-radius: 22px;
-	-webkit-border-radius: 22px;
-	-o-border-radius: 22px;
+  color: #000;
+  background-color: #FFF;
+  border: 1px solid #000;
+  padding-top: 8px;
+  border-radius: 22px;
+  -moz-border-radius: 22px;
+  -webkit-border-radius: 22px;
+  -o-border-radius: 22px;
   @media (max-width: 30em) {
     width: 21px;
     height: 16px;
     padding-top: 5px;
   }
 }
+
 .socialbtns .fa:hover {
-	color: #FFF;
-	background-color: #000;
-	border: 1px solid #000;
+  color: #FFF;
+  background-color: #000;
+  border: 1px solid #000;
   text-decoration: none;
 }
 
@@ -204,8 +216,8 @@ a:hover {
   }
   input#mce-EMAIL.required.email {
     border: solid 1px black;
-    line-height:1.3em;
-    outline:none;
+    line-height: 1.3em;
+    outline: none;
     margin-left: auto;
   }
   .mc-hidden {
@@ -213,9 +225,9 @@ a:hover {
     left: -5000px;
   }
   input#mc-embedded-subscribe.button {
-    border:none;
-    background:none;
-    outline:none;
+    border: none;
+    background: none;
+    outline: none;
   }
   div.clear {
     text-align: right;
