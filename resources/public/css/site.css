@@ -86,6 +86,7 @@ a:hover {
   width: 100%;
 }
 .header {
+  height: 250px;
   margin-bottom: 2em;
 }
 @media (max-width: 48em) {
@@ -110,11 +111,17 @@ a:hover {
   width: 40%;
   padding-top: 20px;
 }
-.header .right canvas {
-  width: 100%;
-}
 @media (max-width: 48em) {
   .header .right {
+    display: none;
+  }
+}
+#canvas {
+  position: absolute;
+  right: 12.5%;
+}
+@media (max-width: 48em) {
+  #canvas {
     display: none;
   }
 }
@@ -129,7 +136,7 @@ a:hover {
   }
 }
 .info {
-  margin: 0 1.5em 0 0.8em ;
+  margin: 0 1.5em 0 0.8em;
 }
 .subscribe-and-social {
   max-width: 55%;

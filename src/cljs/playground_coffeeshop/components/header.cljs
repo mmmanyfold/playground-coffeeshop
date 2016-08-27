@@ -10,8 +10,8 @@
 (def Constraint (.-Constraint js/Matter))
 
 ; constants
-(defonce WIDTH 400)
-(defonce HEIGHT 200)
+(defonce WIDTH 550)
+(defonce HEIGHT 250)
 (defonce HW (/ WIDTH 2))
 (defonce HH (/ WIDTH 2))
 (defonce BLACK-COLOR
@@ -30,24 +30,26 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;; x, y, w, h, opts
 
 (def stack (.. Composites
-               (stack 275 0 1 10 1 0
+               (stack 440 110                               ;; x y
+                      5 7                                   ;; col row
+                      0 0                                   ;; dx dy
                       (fn [x y]
-                        (let [r (rand-int 5)
+                        (let [r (rand-int 3)
                               bc (clj->js BLACK-COLOR)
                               wc (clj->js WHITE-COLOR)]
-                          (case (mod r 5)
+                          (case (mod r 3)
                             0 (.rectangle Bodies x y 10 10 bc)
-                            1 (.circle Bodies x y 8 bc)
-                            2 (.polygon Bodies x y 5 8 wc)
-                            3 (.circle Bodies x y 8 wc)
-                            4 (.polygon Bodies x y 3 8 wc)  ;; triangles
-                            5 (.polygon Bodies x y 3 8 bc)))))))
+                            1 (.circle Bodies x y 8 wc)
+                            2 (.polygon Bodies x y 3 8 wc)  ;; triangle
+                            ))))))
 
-(def weight (.circle Bodies (- HW 100) 0 50 (clj->js (assoc BLACK-COLOR :density 0.3))))
+(def weight (.circle Bodies (+ HW 60) -300 50 (clj->js (assoc BLACK-COLOR
+                                                         :density 1))))
 
-(def catapult (.rectangle Bodies HW (- HH 45) 200 10 (clj->js BLACK-COLOR)))
+(def catapult (.rectangle Bodies (+ HW 160) (- HH 60) 200 8 (clj->js (assoc BLACK-COLOR
+                                                                       :density 0.0025))))
 
-(def counter-balance (.rectangle Bodies (+ HW 75) (- HH 30) 20 20
+(def counter-balance (.rectangle Bodies (+ HW 235) (- HH 45) 20 20
                                  (clj->js (assoc BLACK-COLOR
                                             :isStatic true))))
 
@@ -71,8 +73,8 @@
                                     catapult
                                     counter-balance
                                     weight
-                                    (.create Constraint (clj->js {:bodyA catapult :pointB {:x (- HW 20) :y (+ HH 10)}}))
-                                    (.create Constraint (clj->js {:bodyA catapult :pointB {:x (+ HW 20) :y (+ HH 10)}}))])
+                                    (.create Constraint (clj->js {:bodyA catapult :pointB {:x (+ HW 140) :y (+ HH 20)}}))
+                                    (.create Constraint (clj->js {:bodyA catapult :pointB {:x (+ HW 180) :y (+ HH 20)}}))])
 
                          ; run the engine
                          (.run Engine engine)
@@ -83,17 +85,19 @@
 
        :reagent-render
                      (fn [data]
-                       [:div.header.flex-row
-                        [:div.left.flex-col
-                         [:a {:href "/"}
-                          [:img.logo {:src   "img/header_logo.png"
-                                      :width "80%"}]]]
-                        [:div.right
-                         [:div
-                          [:img.addy {:src "img/header_addy.png"}]]
-                         [:div#canvas]]
-                        ;  [:div
-                        ;   [:img.phone {:src "img/header_phone.png"}]]]
-                        (if (:error data)
-                          [:span (:status-text (:error data))]
-                          [:img {:src data}])])})))
+                       [:div
+                        [:div#canvas]
+                        [:div.header.flex-row
+                         [:div.left.flex-col
+                          [:a {:href "/"}
+                           [:img.logo {:src    "img/header_logo.png"
+                                       :height "200px"}]]]
+                         [:div.right
+                          [:div
+                           [:img.addy {:src "img/header_addy.png"}]]]
+                         ;  [:div
+                         ;   [:img.phone {:src "img/header_phone.png"}]]]
+                         (if (:error data)
+                           [:span (:status-text (:error data))]
+                           [:img {:src data}])]
+                        ])})))
