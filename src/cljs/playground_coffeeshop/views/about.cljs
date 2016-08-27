@@ -1,10 +1,18 @@
 (ns playground-coffeeshop.views.about
-  (:require [re-frame.core :as re-frame]))
-
-;; about
+  (:require [re-frame.core :as re-frame]
+            [cljsjs.marked]
+            [reagent.core :as reagent]))
 
 (defn about-view []
-  [:div "About Playground?"
-   [:p "Hours?"]
-   [:p "etc."]
-   [:p "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."]])
+  (let [about (re-frame/subscribe [:on-about-entry-render])]
+    (reagent/create-class
+      {:component-will-mount
+       (fn []
+         (when (empty? @about)
+           (re-frame/dispatch [:get-cms-data])))
+       :reagent-render
+       (fn []
+         (let [{:keys [title description]} (:fields (first @about))]
+           [:div
+            [:h4 title]
+            [:p description]]))})))

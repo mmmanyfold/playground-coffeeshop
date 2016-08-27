@@ -9,6 +9,11 @@
 (defonce events-space "vwupty4rcx24")
 (defonce cdn-token "bfcc4593881abafaed07ce4b74f384cf82bf693a300fb1a4c0bffc05d6bfdaa9")
 
+(defn- filter-about-entry [op items]
+  (filterv #(op "about"
+               (-> %
+                   (get-in [:sys :contentType :sys :id]))) items))
+
 (re-frame/register-handler
   :initialize-db
   (fn [_ _]
@@ -65,7 +70,8 @@
     [db [_ response]]
     ;; normalizes data
     ;; merge :includes :assets with :event :item data
-    (let [items (:items response)
+    (let [items (filter-about-entry (comp not =) (:items response))
+          about-content-entry (filter-about-entry = (:items response))
           assets (get-in response [:includes :Asset])
           items_mod (mapv (fn [k] (let [item-id (get-in k [:fields :image :sys :id])
                                         photos (get-in k [:fields :photos])
@@ -77,14 +83,15 @@
                                                   assets)
 
                                         photo-urls (mapv (fn [id]
-                                                          (some #(when (= id (get-in % [:sys :id]))
+                                                           (some #(when (= id (get-in % [:sys :id]))
                                                                    (get-in % [:fields :file :url]))
-                                                                assets)) photo-ids)
+                                                                 assets)) photo-ids)
 
                                         url (get-in img [:fields :file :url])]
                                     (assoc (:fields k)
                                       :img-src url :photo-urls photo-urls))) items)
           _response (assoc response :items items_mod)]
+      (re-frame/dispatch [:set-about-entry about-content-entry])
       (when (empty? (:filtered-events db))
         (re-frame/dispatch [:display-filtered-events]))
       (-> db
@@ -96,6 +103,13 @@
     [db [_ response]]
     (-> db
         (assoc :cms-events response))))
+
+(re-frame/register-handler
+  :set-about-entry
+  (fn
+    [db [_ about-entry]]
+    (-> db
+        (assoc :on-about-entry-render about-entry))))
 
 (re-frame/register-handler
   :set-active-view

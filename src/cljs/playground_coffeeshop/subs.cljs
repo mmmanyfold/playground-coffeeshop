@@ -26,3 +26,8 @@
   :on-event-details-render
   (fn [db _]
     (reaction (:on-event-details-render @db))))
+
+(re-frame/register-sub
+  :on-about-entry-render
+  (fn [db _]
+    (reaction (:on-about-entry-render @db))))

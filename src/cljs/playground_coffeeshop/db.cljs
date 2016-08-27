@@ -5,4 +5,5 @@
    :filtered-events []
    :on-mailer-process-event nil
    :details-render-id nil
-   :on-event-details-render nil})
+   :on-event-details-render nil
+   :on-about-entry-render nil})
