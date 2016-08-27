@@ -24,8 +24,6 @@
 (defn menu-component []
   (let [active-view (re-frame/subscribe [:active-view])]
     (fn []
-      ; active menu item class
-      ; .menu-item-divided.pure-menu-selected
       [:div#layout
        [:a#menuLink.menu-link
         {:href "#menu"}
@@ -52,7 +50,7 @@
             [:a {:href     "/events"
                  :on-click #(re-frame/dispatch [:display-filtered-events <])}
              [:span "Past"]]]]
-          [:li.pure-menu-item [:a.pure-menu-link {:href "/shop"} "Shop"]]
+          [:li.pure-menu-item [:a.pure-menu-link {:href "http://shop.playgroundcoffeeshop.com/"} "Shop"]]
           [:li.pure-menu-item [:a.pure-menu-link {:href "/contact"} "Contact"]]]]]
        [:div.main
         [:div.content
