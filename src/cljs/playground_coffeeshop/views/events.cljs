@@ -11,7 +11,7 @@
       {:component-will-mount
        (fn []
          (when (empty? @filtered-events)
-           (re-frame/dispatch [:get-cms-data])))
+           (re-frame/dispatch [:get-event-cms-data])))
 
        :reagent-render
        (fn []

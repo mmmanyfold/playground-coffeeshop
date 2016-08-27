@@ -7,7 +7,9 @@
             [json-html.core :refer [edn->html]]))
 
 (defonce events-space "vwupty4rcx24")
-(defonce cdn-token "bfcc4593881abafaed07ce4b74f384cf82bf693a300fb1a4c0bffc05d6bfdaa9")
+(defonce site-space "3tvj6ug2yrmi")
+(defonce event-cdn-token "bfcc4593881abafaed07ce4b74f384cf82bf693a300fb1a4c0bffc05d6bfdaa9")
+(defonce site-cdn-token "9e839c4c137d65e026cce9aa3a7f0be8a954055b25a969474cd0bd202bf703c4")
 
 (defn- filter-items [comparador type items]
   "
@@ -26,12 +28,22 @@
     db/default-db))
 
 (re-frame/register-handler
-  :get-cms-data
+  :get-event-cms-data
   (fn [db _]
-    (GET (str "https://cdn.contentful.com/spaces/" events-space "/entries?access_token=" cdn-token)
+    (GET (str "https://cdn.contentful.com/spaces/" events-space "/entries?access_token=" event-cdn-token)
          {:response-format :json
           :keywords?       true
-          :handler         #(re-frame/dispatch [:process-contentful-ok-response %1])
+          :handler         #(re-frame/dispatch [:process-contentful-events-ok-response %1])
+          :error-handler   #(re-frame/dispatch [:process-contenful-error-response %1])})
+    db))
+
+(re-frame/register-handler
+  :get-site-cms-data
+  (fn [db _]
+    (GET (str "https://cdn.contentful.com/spaces/" site-space "/entries?access_token=" site-cdn-token)
+         {:response-format :json
+          :keywords?       true
+          :handler         #(re-frame/dispatch [:process-contentful-site-ok-response %1])
           :error-handler   #(re-frame/dispatch [:process-contenful-error-response %1])})
     db))
 
@@ -71,13 +83,12 @@
         (assoc :on-mailer-process-event nil))))
 
 (re-frame/register-handler
-  :process-contentful-ok-response
+  :process-contentful-events-ok-response
   (fn
     [db [_ response]]
     ;; normalizes data
     ;; merge :includes :assets with :event :item data
     (let [event-items (filter-items = "event" (:items response))
-          about-items (filter-items = "about" (:items response))
           assets (get-in response [:includes :Asset])
           items_mod (mapv (fn [k] (let [item-id (get-in k [:fields :image :sys :id])
                                         photos (get-in k [:fields :photos])
@@ -97,7 +108,6 @@
                                     (assoc (:fields k)
                                       :img-src url :photo-urls photo-urls))) event-items)
           _response (assoc response :items items_mod)]
-      (re-frame/dispatch [:set-about-entry about-items])
       (when (empty? (:filtered-events db))
         (re-frame/dispatch [:display-filtered-events]))
       (-> db
@@ -111,11 +121,12 @@
         (assoc :cms-events response))))
 
 (re-frame/register-handler
-  :set-about-entry
+  :process-contentful-site-ok-response
   (fn
-    [db [_ about-entry]]
-    (-> db
-        (assoc :on-about-entry-render about-entry))))
+    [db [_ response]]
+    (let [about-items (filter-items = "about" (:items response))]
+      (-> db
+          (assoc :on-about-entry-render about-items)))))
 
 (re-frame/register-handler
   :set-active-view

@@ -9,7 +9,7 @@
       {:component-will-mount
        (fn []
          (when (empty? @about)
-           (re-frame/dispatch [:get-cms-data])))
+           (re-frame/dispatch [:get-site-cms-data])))
        :reagent-render
        (fn []
          (let [{:keys [title description]} (:fields (first @about))]

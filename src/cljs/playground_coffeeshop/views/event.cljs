@@ -16,7 +16,7 @@
            (when (empty? @event)
              (do
                (re-frame/dispatch [:register-event-details-id id])
-               (re-frame/dispatch [:get-cms-data])))))
+               (re-frame/dispatch [:get-event-cms-data])))))
 
        :reagent-render
        (fn []
