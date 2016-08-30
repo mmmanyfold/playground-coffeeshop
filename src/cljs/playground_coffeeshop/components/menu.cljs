@@ -6,6 +6,7 @@
             [playground-coffeeshop.views.bookings :refer [bookings-view]]
             [playground-coffeeshop.views.contact :refer [contact-view]]
             [playground-coffeeshop.components.header :refer [header-component]]
+            [playground-coffeeshop.views.menus :refer [menus-view]]
             [playground-coffeeshop.views.event :refer [event-view]]))
 
 (defmulti views identity)
@@ -15,6 +16,7 @@
 (defmethod views :bookings-view [] [bookings-view])
 (defmethod views :contact-view [] [contact-view])
 (defmethod views :event-view [] [event-view])
+(defmethod views :menus-view [] [menus-view])
 (defmethod views :default [] [:div "404"])
 
 (defn show-view
@@ -32,6 +34,7 @@
         [:div.pure-menu
          [:ul.pure-menu-list
           [:li.pure-menu-item [:a.pure-menu-link {:href "/about"} "About"]]
+          [:li.pure-menu-item [:a.pure-menu-link {:href "/menu"} "Menu"]]
           [:li.pure-menu-item [:a.pure-menu-link {:href "/bookings"} "Bookings"]]
           [:ul.pure-menu.events-menu [:span [:a.pure-menu-link
                                              {:href     "/events"

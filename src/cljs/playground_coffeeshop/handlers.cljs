@@ -124,9 +124,21 @@
   :process-contentful-site-ok-response
   (fn
     [db [_ response]]
-    (let [about-items (filter-items = "about" (:items response))]
+    (let [about-items (filter-items = "about" (:items response))
+          menu-items (filter-items = "menu" (:items response))
+          menu-item-titles (mapv #(get-in % [:fields :title]) menu-items)
+          menu-item-asset-ids (mapv #(get-in % [:fields :pdf :sys :id]) menu-items)
+          assets (get-in response [:includes :Asset])
+          match-menu-items (mapv (fn [id]
+                                   (some #(when (= id (get-in % [:sys :id]))
+                                            (get-in % [:fields :file :url])) assets))
+                                 menu-item-asset-ids)]
+
+
+
       (-> db
-          (assoc :on-about-entry-render about-items)))))
+          (assoc :on-about-entry-render about-items
+                 :on-menus-entry-render match-menu-items)))))
 
 (re-frame/register-handler
   :set-active-view

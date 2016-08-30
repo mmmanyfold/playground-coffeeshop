@@ -31,3 +31,8 @@
   :on-about-entry-render
   (fn [db _]
     (reaction (:on-about-entry-render @db))))
+
+(re-frame/register-sub
+  :on-menus-entry-render
+  (fn [db _]
+    (reaction (:on-menus-entry-render @db))))
