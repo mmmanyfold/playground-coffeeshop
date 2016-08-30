@@ -6,4 +6,5 @@
    :on-mailer-process-event nil
    :details-render-id nil
    :on-event-details-render nil
-   :on-about-entry-render nil})
+   :on-about-entry-render nil
+   :on-menus-entry-render nil})
