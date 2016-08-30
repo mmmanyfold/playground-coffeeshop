@@ -11,4 +11,11 @@
            (re-frame/dispatch [:get-site-cms-data])))
        :reagent-render
        (fn []
-         [:div (str @menus)])})))
+         [:div
+          (for [m @menus
+                :let [title (first m)
+                      link (second m)]]
+            ^{:key (gensym "event-")}
+            [:li
+             [:a {:href link}
+              [:b title]]])])})))

@@ -19,8 +19,8 @@
   type: about event etc
   items: collection of items from which to filter"
   (filterv #(comparador type
-               (-> %
-                   (get-in [:sys :contentType :sys :id]))) items))
+                        (-> %
+                            (get-in [:sys :contentType :sys :id]))) items))
 
 (re-frame/register-handler
   :initialize-db
@@ -131,14 +131,14 @@
           assets (get-in response [:includes :Asset])
           match-menu-items (mapv (fn [id]
                                    (some #(when (= id (get-in % [:sys :id]))
-                                            (get-in % [:fields :file :url])) assets))
+                                           (get-in % [:fields :file :url])) assets))
                                  menu-item-asset-ids)]
 
 
 
       (-> db
           (assoc :on-about-entry-render about-items
-                 :on-menus-entry-render match-menu-items)))))
+                 :on-menus-entry-render (zipmap menu-item-titles match-menu-items))))))
 
 (re-frame/register-handler
   :set-active-view
