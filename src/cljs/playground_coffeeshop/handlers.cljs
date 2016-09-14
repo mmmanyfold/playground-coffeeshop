@@ -124,11 +124,19 @@
   :process-contentful-site-ok-response
   (fn
     [db [_ response]]
-    (let [about-items (filter-items = "about" (:items response))
-          menu-items (filter-items = "menu" (:items response))
+    (let [items (:items response)
+          about-items (filter-items = "about" items)
+          menu-items (filter-items = "menu" items)
+          slideshow-items (filter-items = "slideShow" items)
+          slideshow-items-asset-ids (mapv #(-> % :sys :id)
+                                          (-> (first slideshow-items) :fields :images))
+          assets (get-in response [:includes :Asset])
+          slideshow-images (mapv #(-> % :fields :file :url)
+                                (mapv (fn [id]
+                                        (some #(when (= id (get-in % [:sys :id])) %) assets))
+                                      slideshow-items-asset-ids))
           menu-item-titles (mapv #(get-in % [:fields :title]) menu-items)
           menu-item-asset-ids (mapv #(get-in % [:fields :pdf :sys :id]) menu-items)
-          assets (get-in response [:includes :Asset])
           match-menu-items (mapv (fn [id]
                                    (some #(when (= id (get-in % [:sys :id]))
                                            (get-in % [:fields :file :url])) assets))
@@ -137,8 +145,10 @@
 
 
       (-> db
-          (assoc :on-about-entry-render about-items
-                 :on-menus-entry-render (zipmap menu-item-titles match-menu-items))))))
+          (assoc
+            :on-slide-show-entry-render slideshow-images
+            :on-about-entry-render about-items
+            :on-menus-entry-render (zipmap menu-item-titles match-menu-items))))))
 
 (re-frame/register-handler
   :set-active-view

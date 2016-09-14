@@ -7,4 +7,5 @@
    :details-render-id nil
    :on-event-details-render nil
    :on-about-entry-render nil
-   :on-menus-entry-render nil})
+   :on-menus-entry-render nil
+   :on-slide-show-entry-render nil})
