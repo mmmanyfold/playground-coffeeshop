@@ -50,7 +50,7 @@
 (re-frame/register-handler
   :post-email
   (fn [db [_ body]]
-    (POST "http://playground-coffeeshop-mailer.apps.aterial.org/api/mail"
+    (POST "https://playground-coffeeshop-mailer.herokuapp.com/api/mail"
           {:response-format :json
            :keywords?       true
            :params          {:from    (:email body)
