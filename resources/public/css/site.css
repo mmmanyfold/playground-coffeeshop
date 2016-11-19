@@ -16,6 +16,10 @@ a {
 a:hover {
   text-decoration: underline;
 }
+h2,
+h4 {
+  margin-top: 0;
+}
 #app {
   margin: 0 auto;
   width: 75%;
@@ -92,14 +96,19 @@ a:hover {
 @media (max-width: 48em) {
   .header {
     margin-bottom: 0.5em;
+    height: auto;
   }
 }
 .header .left {
   width: 45%;
 }
+.header .left img.logo {
+  width: 100%;
+  height: auto;
+}
 @media (max-width: 48em) {
   .header .left {
-    width: inherit;
+    width: 100%;
     padding: 0 0.5em 0 0.2em;
   }
 }
@@ -210,173 +219,57 @@ li.events-submenu-hide {
 li.events-submenu-show {
   display: block !important;
 }
-/*
-Add transition to containers so they can push in and out.
-*/
-#layout,
-#menu,
-.menu-link {
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  -ms-transition: all 0.2s ease-out;
-  -o-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
+ul {
+  -webkit-padding-start: 0;
+  -webkit-margin-before: 0;
 }
-/*
-This is the parent `<div>` that contains the menu and the content area.
-*/
-#layout {
-  position: relative;
-  padding-left: 0;
+ul.events-menu li a {
+  margin-left: 25px;
 }
-#layout.active #menu {
-  left: 150px;
-  width: 150px;
+.nav {
+  width: 200px;
 }
-#layout.active .menu-link {
-  left: 150px;
+@media (max-width: 48em) {
+  .nav {
+    display: none;
+  }
+  .nav {
+    display: none;
+  }
+  #nav-wrapper:before {
+    content: "\2261";
+    font-size: 30pt;
+  }
+  .nav.visible {
+    display: block;
+    font-size: 12pt;
+  }
 }
-/*
-The `#menu` `<div>` is the parent `<div>` that contains the `.pure-menu` that
-appears on the left side of the page.
-*/
-#menu {
+#nav-wrapper {
   background: #fff;
-  margin-left: -150px;
-  /* "#menu" width */
-  width: 150px;
-  display: inline-block;
-  vertical-align: top;
   z-index: 1000;
   /* so the menu or its navicon stays above all content */
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
-/*
-All anchors inside the menu should be styled like this.
-*/
-#menu a {
+#nav-wrapper ul li {
+  list-style-type: none;
+}
+#nav-wrapper a {
+  display: block;
   font-family: BrushScriptMT;
   font-size: 1.7em;
   text-decoration: none;
   color: #000;
   border: none;
-  padding: 0 0 0 0.3em;
+  padding: 0 0 0 0.5em;
   margin-bottom: 0.5em;
+  margin-right: 0.5em;
 }
-ul.pure-menu.events-menu {
-  padding-left: inherit;
-}
-ul.pure-menu.events-menu li {
-  padding-left: 40px;
-}
-ul.pure-menu.events-menu li span {
-  padding-right: 10px;
-}
-li.pure-menu-item.last {
-  margin-bottom: 1em;
-}
-/*
-Change color of the anchor links on hover/focus.
-*/
-#menu .pure-menu li a:hover,
-#menu .pure-menu li a:focus,
-#menu .pure-menu ul a:hover,
-#menu .pure-menu ul a:focus {
+#nav-wrapper li a:hover,
+#nav-wrapper li a:focus,
+#nav-wrapper ul a:hover,
+#nav-wrapper ul a:focus {
   color: #fff;
   background: #000;
-}
-/*
-This styles the selected menu item `<li>`.
-*/
-#menu .pure-menu-selected {
-  background: #000;
-}
-/*
-This styles a link within a selected menu item `<li>`.
-*/
-#menu .pure-menu-selected a {
-  color: #fff;
-}
-/* -- Dynamic Button For Responsive Menu -------------------------------------*/
-/*
-The button to open/close the Menu is custom-made and not part of Pure. Here's
-how it works:
-*/
-/*
-`.menu-link` represents the responsive menu toggle that shows/hides on
-small screens.
-*/
-.menu-link {
-  font-family: "helvetica", sans-serif;
-  display: block;
-  /* show this only on small screens */
-  top: 0;
-  left: 0;
-  /* "#menu width" */
-  background: #000;
-  font-size: 10px;
-  /* change this value to increase/decrease button size */
-  z-index: 10;
-  width: 2em;
-  height: auto;
-  padding: 2.1em 1.6em;
-}
-.menu-link:hover,
-.menu-link:focus {
-  background: #000;
-}
-.menu-link span {
-  position: relative;
-  display: block;
-}
-.menu-link span,
-.menu-link span:before,
-.menu-link span:after {
-  background-color: #fff;
-  width: 100%;
-  height: 0.2em;
-}
-.menu-link span:before,
-.menu-link span:after {
-  position: absolute;
-  margin-top: -0.6em;
-  content: " ";
-}
-.menu-link span:after {
-  margin-top: 0.6em;
-}
-/* -- Responsive Styles (Media Queries) ------------------------------------- */
-/*
-Hides the menu at `48em`, but modify this based on your app's needs.
-*/
-@media (min-width: 48em) {
-  #layout {
-    padding-left: 150px;
-    /* left col width "#menu" */
-    left: 0;
-  }
-  #menu {
-    left: 150px;
-  }
-  .menu-link {
-    position: fixed;
-    left: 150px;
-    display: none;
-  }
-  #layout.active .menu-link {
-    left: 150px;
-  }
-}
-@media (max-width: 48em) {
-  /* Only apply this when the window is small. Otherwise, the following
-  case results in extra padding on the left:
-      * Make the window small.
-      * Tap the menu to trigger the active state.
-      * Make the window large again.
-  */
-  #layout.active {
-    position: relative;
-    left: 150px;
-  }
 }

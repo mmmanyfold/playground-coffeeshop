@@ -3,7 +3,6 @@
 <head>
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <link href="css/site.css" rel="stylesheet" type="text/css">
     <link href="css/form.css" rel="stylesheet" type="text/css">
 </head>
@@ -12,37 +11,11 @@
 <script type="text/javascript" src="js/vendor/matterjs-0.10.0.min.js"></script>
 <script src="js/compiled/app.js"></script>
 <script>playground_coffeeshop.core.init();</script>
+<!-- nav script -->
 <script>
-    (function (window, document) {
-        var layout = document.getElementById('layout'),
-                menu = document.getElementById('menu'),
-                menuLink = document.getElementById('menuLink');
-
-        function toggleClass(element, className) {
-            var classes = element.className.split(/\s+/),
-                    length = classes.length,
-                    i = 0;
-            for (; i < length; i++) {
-                if (classes[i] === className) {
-                    classes.splice(i, 1);
-                    break;
-                }
-            }
-            // The className is not found
-            if (length === classes.length) {
-                classes.push(className);
-            }
-            element.className = classes.join(' ');
-        }
-
-        menuLink.onclick = function (e) {
-            var active = 'active';
-            e.preventDefault();
-            toggleClass(layout, active);
-            toggleClass(menu, active);
-            toggleClass(menuLink, active);
-        };
-    }(this, this.document));
+document.querySelector('#nav-wrapper').addEventListener('click', function(e) {
+  document.querySelector('.nav').classList.toggle('visible');
+  });
 </script>
 <!-- mailchimp scripts -->
 <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>

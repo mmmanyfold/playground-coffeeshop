@@ -1,4 +1,4 @@
-(ns playground-coffeeshop.components.menu
+(ns playground-coffeeshop.components.nav
   (:require [re-frame.core :as re-frame]
             [playground-coffeeshop.views.about :refer [about-view]]
             [playground-coffeeshop.views.events :refer [events-view]]
@@ -23,38 +23,34 @@
   [view-name]
   [views view-name])
 
-(defn menu-component []
+(defn nav-component []
   (let [active-view (re-frame/subscribe [:active-view])]
     (fn []
-      [:div#layout
-       [:a#menuLink.menu-link
-        {:href "#menu"}
-        [:span]]
-       [:div#menu
-        [:div.pure-menu
-         [:ul.pure-menu-list
-          [:li.pure-menu-item [:a.pure-menu-link {:href "/about"} "About"]]
-          [:li.pure-menu-item [:a.pure-menu-link {:href "/menu"} "Menu"]]
-          [:li.pure-menu-item [:a.pure-menu-link {:href "/bookings"} "Bookings"]]
-          [:ul.pure-menu.events-menu [:span [:a.pure-menu-link
-                                             {:href     "/events"
-                                              :on-click #(re-frame/dispatch [:display-filtered-events])} "Events"]]
-           [:li.pure-menu-item
+      [:div.flex-row
+       [:div#nav-wrapper
+         [:ul.nav
+          [:li [:a {:href "/about"} "About"]]
+          [:li [:a {:href "/menus"} "Menus"]]
+          [:li [:a {:href "/bookings"} "Bookings"]]
+          [:ul.events-menu [:span [:a
+                                   {:href     "/events"
+                                    :on-click #(re-frame/dispatch [:display-filtered-events])} "Events"]]
+           [:li
             {:class (if (= @active-view :events-view)
                       "events-submenu-show"
                       "events-submenu-hide")}
             [:a {:href     "/events"
                  :on-click #(re-frame/dispatch [:display-filtered-events >])}
              [:span "Upcoming"]]]
-           [:li.pure-menu-item.last
+           [:li.last
             {:class (if (= @active-view :events-view)
                       "events-submenu-show"
                       "events-submenu-hide")}
             [:a {:href     "/events"
                  :on-click #(re-frame/dispatch [:display-filtered-events <])}
              [:span "Past"]]]]
-          [:li.pure-menu-item [:a.pure-menu-link {:href "http://shop.playgroundcoffeeshop.com/"} "Shop"]]
-          [:li.pure-menu-item [:a.pure-menu-link {:href "/contact"} "Contact"]]]]]
+          [:li [:a {:href "http://shop.playgroundcoffeeshop.com/"} "Shop"]]
+          [:li [:a {:href "/contact"} "Contact"]]]]
        [:div.main
         [:div.content
          [show-view @active-view]]]])))

@@ -39,7 +39,7 @@
             (re-frame/dispatch [:set-active-view :home-view]))
   (defroute "/about" []
             (re-frame/dispatch [:set-active-view :about-view]))
-  (defroute "/menu" []
+  (defroute "/menus" []
             (re-frame/dispatch [:set-active-view :menus-view]))
   (defroute "/events" []
             (re-frame/dispatch [:set-active-view :events-view]))
