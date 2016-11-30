@@ -95,13 +95,13 @@
                                         photo-ids (mapv #(get-in % [:sys :id]) photos)
 
                                         img (some #(when
-                                                    (= (get-in % [:sys :id]) item-id)
-                                                    %)
+                                                     (= (get-in % [:sys :id]) item-id)
+                                                     %)
                                                   assets)
 
                                         photo-urls (mapv (fn [id]
                                                            (some #(when (= id (get-in % [:sys :id]))
-                                                                   (get-in % [:fields :file :url]))
+                                                                    (get-in % [:fields :file :url]))
                                                                  assets)) photo-ids)
 
                                         url (get-in img [:fields :file :url])]
@@ -122,22 +122,45 @@
 
 (re-frame/register-handler
   :process-contentful-site-ok-response
-  (fn
-    [db [_ response]]
-    (let [about-items (filter-items = "about" (:items response))
-          menu-items (filter-items = "menu" (:items response))
+  (fn [db [_ response]]
+    (let [response-items (:items response)
+
+          about-items (filter-items = "about" response-items)
+
+          menu-items (filter-items = "menu" response-items)
+
+          slide-show-items (-> (filter-items = "slideShow" response-items)
+                               first
+                               :fields
+                               :images)
+
           menu-item-titles (mapv #(get-in % [:fields :title]) menu-items)
+
           menu-item-asset-ids (mapv #(get-in % [:fields :pdf :sys :id]) menu-items)
+
+          slide-show-asset-ids (->> slide-show-items
+                                    (map :sys)
+                                    (map :id))
+
           assets (get-in response [:includes :Asset])
+
+
+          match-slide-show-asseets (mapv (fn [id]
+                                           (some #(when (= id (get-in % [:sys :id]))
+                                                    (get-in % [:fields :file :url])) assets))
+                                         slide-show-asset-ids)
+
+
           match-menu-items (mapv (fn [id]
                                    (some #(when (= id (get-in % [:sys :id]))
-                                           (get-in % [:fields :file :url])) assets))
+                                            (get-in % [:fields :file :url])) assets))
                                  menu-item-asset-ids)]
 
 
 
       (-> db
-          (assoc :on-about-entry-render about-items
+          (assoc :on-slide-show-images  match-slide-show-asseets
+                 :on-about-entry-render about-items
                  :on-menus-entry-render (zipmap menu-item-titles match-menu-items))))))
 
 (re-frame/register-handler

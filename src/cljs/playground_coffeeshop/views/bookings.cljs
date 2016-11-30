@@ -73,7 +73,6 @@
        [alert-component msg-state 5000]
        [:p "The space can be converted into a gallery, party, performance venue, etc."]
        [:p "Prices contingent upon the idea."]
-       [:p "----Photos----"]
        [bind-fields form-template form-state]
        [:button.pure-button.pure-button-primary
         {:name     "submit" :type "button"

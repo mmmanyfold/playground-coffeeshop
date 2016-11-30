@@ -36,3 +36,8 @@
   :on-menus-entry-render
   (fn [db _]
     (reaction (:on-menus-entry-render @db))))
+
+(re-frame/register-sub
+  :on-slide-show-images
+  (fn [db _]
+    (reaction (:on-slide-show-images @db))))
