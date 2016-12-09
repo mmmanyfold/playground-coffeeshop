@@ -16,7 +16,7 @@
        :reagent-render
        (fn []
          [:div.filtered-events
-          [:h2 "Events:"]
+          [:h2 "Events"]
           [:div.flex-row-wrap
            (if (not (empty? @filtered-events))
              (for [item @filtered-events
@@ -25,4 +25,3 @@
                [:a.event-link {:href id}
                 [event-thumb-component item]])
              "No upcoming events / check back soon.")]])})))
-

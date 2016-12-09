@@ -129,6 +129,8 @@
 
           menu-items (filter-items = "menu" response-items)
 
+          consignment-form (filter-items = "consignmentForm" response-items)
+
           slide-show-items (-> (filter-items = "slideShow" response-items)
                                first
                                :fields
@@ -137,6 +139,8 @@
           menu-item-titles (mapv #(get-in % [:fields :title]) menu-items)
 
           menu-item-asset-ids (mapv #(get-in % [:fields :pdf :sys :id]) menu-items)
+
+          consignment-asset-id (mapv #(get-in % [:fields :pdf :sys :id]) consignment-form)
 
           slide-show-asset-ids (->> slide-show-items
                                     (map :sys)
@@ -154,13 +158,17 @@
           match-menu-items (mapv (fn [id]
                                    (some #(when (= id (get-in % [:sys :id]))
                                             (get-in % [:fields :file :url])) assets))
-                                 menu-item-asset-ids)]
+                                 menu-item-asset-ids)
 
-
+          match-consignment-asset (mapv (fn [id]
+                                          (some #(when (= id (get-in % [:sys :id]))
+                                                   (get-in % [:fields :file :url])) assets))
+                                        consignment-asset-id)]
 
       (-> db
           (assoc :on-slide-show-images  match-slide-show-asseets
                  :on-about-entry-render about-items
+                 :on-consignment-entry-render match-consignment-asset
                  :on-menus-entry-render (zipmap menu-item-titles match-menu-items))))))
 
 (re-frame/register-handler
