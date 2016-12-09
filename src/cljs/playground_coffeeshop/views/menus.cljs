@@ -12,10 +12,10 @@
        :reagent-render
        (fn []
          [:div
+          [:h3 "Menus"]
           (for [m @menus
                 :let [title (first m)
                       link (second m)]]
             ^{:key (gensym "event-")}
-            [:li
-             [:a {:href link}
-              [:b title]]])])})))
+            [:p {:style {:margin-bottom "27px"}} [:a.button-link {:href link :target "_blank"}
+                                                  [:b title]]])])})))

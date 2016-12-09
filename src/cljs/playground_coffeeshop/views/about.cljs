@@ -14,5 +14,5 @@
        (fn []
          (let [{:keys [title description]} (:fields (first @about))]
            [:div
-            [:h4 title]
+            [:h3 title]
             [:p description]]))})))

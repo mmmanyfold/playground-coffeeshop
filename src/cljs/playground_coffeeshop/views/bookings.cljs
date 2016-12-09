@@ -23,7 +23,7 @@
 
 (def form-template
   [:form.pure-form
-   [:h4 "Contact us today and get reply with in 24 hours!"]
+   [:h4 "Contact us today and get a reply within 24 hours!"]
    [:fieldset
     [:input {:field    :text :id :name :placeholder "Your name" :type "text"
              :tabIndex "1" :required true :autofocus true}]]
@@ -70,6 +70,7 @@
                    (js/window.scrollTo 0 0))
           "default"))
       [:div
+       [:h3 "Bookings"]
        [alert-component msg-state 5000]
        [:p "The space can be converted into a gallery, party, performance venue, etc."]
        [:p "Prices contingent upon the idea."]

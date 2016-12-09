@@ -21,9 +21,8 @@ a:hover {
   text-decoration: underline;
 }
 
-h2, h4 {
-  margin-top: 0;
-}
+h2 { margin: 0 }
+h3, h4 { margin-top: 0 }
 
 #app {
   margin: 0 auto;
@@ -213,6 +212,17 @@ h2, h4 {
   background-color: #000;
   border: 1px solid #000;
   text-decoration: none;
+}
+
+.button-link {
+  margin-bottom: 50px;
+  padding: 4px 7px;
+  border: 2px solid #8B4513;
+  &:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #8B4513;
+  }
 }
 
 .subscribe {
@@ -408,4 +418,3 @@ img {
 .affix {
   position: fixed;
 }
-

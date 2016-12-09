@@ -45,6 +45,8 @@
             (re-frame/dispatch [:set-active-view :events-view]))
   (defroute "/bookings" []
             (re-frame/dispatch [:set-active-view :bookings-view]))
+  (defroute "/consignment" []
+            (re-frame/dispatch [:set-active-view :consignment-view]))
   (defroute "/contact" []
             (re-frame/dispatch [:set-active-view :contact-view]))
   (defroute "/:id" {:as params}

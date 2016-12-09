@@ -7,6 +7,7 @@
             [playground-coffeeshop.views.contact :refer [contact-view]]
             [playground-coffeeshop.components.header :refer [header-component]]
             [playground-coffeeshop.views.menus :refer [menus-view]]
+            [playground-coffeeshop.views.consignment :refer [consignment-view]]
             [playground-coffeeshop.views.event :refer [event-view]]))
 
 (defmulti views identity)
@@ -17,6 +18,7 @@
 (defmethod views :contact-view [] [contact-view])
 (defmethod views :event-view [] [event-view])
 (defmethod views :menus-view [] [menus-view])
+(defmethod views :consignment-view [] [consignment-view])
 (defmethod views :default [] [:div "404"])
 
 (defn show-view
@@ -49,7 +51,7 @@
             [:a {:href     "/events"
                  :on-click #(re-frame/dispatch [:display-filtered-events <])}
              [:span "Past"]]]]
-          [:li [:a {:href "http://shop.playgroundcoffeeshop.com/"} "Shop"]]
+          [:li [:a {:href "/consignment"} "Consignment"]]
           [:li [:a {:href "/contact"} "Contact"]]]]
        [:div.main
         [:div.content
