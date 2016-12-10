@@ -234,6 +234,7 @@ li.events-submenu-show {
 }
 ul {
   -webkit-padding-start: 0;
+  padding-left: 0;
   -webkit-margin-before: 0;
 }
 ul.events-menu li a {
