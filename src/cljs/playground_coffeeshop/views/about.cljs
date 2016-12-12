@@ -12,7 +12,7 @@
            (re-frame/dispatch [:get-site-cms-data])))
        :reagent-render
        (fn []
-         (let [{:keys [title description]} (:fields (first @about))]
+         (let [{:keys [title description]} (:fields @about)]
            [:div
             [:h3 title]
             [:p description]]))})))

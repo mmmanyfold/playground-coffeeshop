@@ -125,7 +125,8 @@
   (fn [db [_ response]]
     (let [response-items (:items response)
 
-          about-items (filter-items = "about" response-items)
+          about-item (-> (filter-items = "about" response-items)
+                         first)
 
           menu-items (filter-items = "menu" response-items)
 
@@ -167,7 +168,7 @@
 
       (-> db
           (assoc :on-slide-show-images  match-slide-show-assets
-                 :on-about-entry-render about-items
+                 :on-about-entry-render about-item
                  :on-consignment-entry-render final-consigment-data
                  :on-menus-entry-render (zipmap menu-item-titles match-menu-assets))))))
 
