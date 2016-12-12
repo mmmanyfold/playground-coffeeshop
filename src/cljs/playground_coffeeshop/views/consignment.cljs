@@ -12,9 +12,9 @@
            (re-frame/dispatch [:get-site-cms-data])))
        :reagent-render
        (fn []
-         (let [title (get-in (first (first @consignment)) [:fields :title])
-               details (get-in (first (first @consignment)) [:fields :details])
-               link (second (first @consignment))]
+         (let [title (get-in @consignment [:fields :title])
+               details (get-in @consignment [:fields :details])
+               link (@consignment :consignment-asset)]
            [:div
             [:h3 title]
 

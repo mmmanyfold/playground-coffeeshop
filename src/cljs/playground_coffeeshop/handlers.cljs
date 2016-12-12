@@ -129,7 +129,8 @@
 
           menu-items (filter-items = "menu" response-items)
 
-          consignment-items (filter-items = "consignment" response-items)
+          consignment-item (-> (filter-items = "consignment" response-items)
+                               first)
 
           slide-show-items (-> (filter-items = "slideShow" response-items)
                                first
@@ -140,7 +141,7 @@
 
           menu-item-asset-ids (mapv #(get-in % [:fields :pdf :sys :id]) menu-items)
 
-          consignment-item-asset-ids (mapv #(get-in % [:fields :pdf :sys :id]) consignment-items)
+          consignment-item-asset-id (get-in consignment-item [:fields :pdf :sys :id])
 
           slide-show-asset-ids (->> slide-show-items
                                     (map :sys)
@@ -158,15 +159,16 @@
                                             (get-in % [:fields :file :url])) assets))
                                   menu-item-asset-ids)
 
-          match-consignment-assets (mapv (fn [id]
-                                          (some #(when (= id (get-in % [:sys :id]))
-                                                   (get-in % [:fields :file :url])) assets))
-                                         consignment-item-asset-ids)]
+          match-consignment-assets  (some #(when (= consignment-item-asset-id (get-in % [:sys :id]))
+                                             (get-in % [:fields :file :url])) assets)
+
+          final-consigment-data (assoc consignment-item
+                                  :consignment-asset match-consignment-assets)]
 
       (-> db
           (assoc :on-slide-show-images  match-slide-show-assets
                  :on-about-entry-render about-items
-                 :on-consignment-entry-render (zipmap consignment-items match-consignment-assets)
+                 :on-consignment-entry-render final-consigment-data
                  :on-menus-entry-render (zipmap menu-item-titles match-menu-assets))))))
 
 (re-frame/register-handler
