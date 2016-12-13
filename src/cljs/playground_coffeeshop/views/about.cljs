@@ -1,6 +1,5 @@
 (ns playground-coffeeshop.views.about
   (:require [re-frame.core :as re-frame]
-            [cljsjs.marked]
             [reagent.core :as reagent]))
 
 (defn about-view []

@@ -12,15 +12,16 @@
            (re-frame/dispatch [:get-site-cms-data])))
        :reagent-render
        (fn []
-         (let [title (get-in @consignment [:fields :title])
-               details (get-in @consignment [:fields :details])
-               link (@consignment :consignment-asset)]
-           [:div
-            [:h3 title]
+         (when @consignment
+           (let [title (get-in @consignment [:fields :title])
+                 details (get-in @consignment [:fields :details])
+                 link (@consignment :consignment-asset)]
+             [:div
+              [:h3 title]
 
-            [:div {"dangerouslySetInnerHTML"
-                   #js{:__html (js/marked details)}}]
+              [:div {"dangerouslySetInnerHTML"
+                     #js{:__html (js/marked details)}}]
 
-            [:p {:style {:margin-top "27px"}}
-              [:a.button-link {:href link :target "_blank"}
-                [:b "Download Form"]]]]))})))
+              [:p {:style {:margin-top "27px"}}
+               [:a.button-link {:href link :target "_blank"}
+                [:b "Download Form"]]]])))})))
