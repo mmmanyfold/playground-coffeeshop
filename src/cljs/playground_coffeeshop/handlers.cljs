@@ -125,11 +125,13 @@
   (fn [db [_ response]]
     (let [response-items (:items response)
 
-          about-items (filter-items = "about" response-items)
+          about-item (-> (filter-items = "about" response-items)
+                         first)
 
           menu-items (filter-items = "menu" response-items)
 
-          consignment-form (filter-items = "consignmentForm" response-items)
+          consignment-item (-> (filter-items = "consignment" response-items)
+                               first)
 
           slide-show-items (-> (filter-items = "slideShow" response-items)
                                first
@@ -140,7 +142,7 @@
 
           menu-item-asset-ids (mapv #(get-in % [:fields :pdf :sys :id]) menu-items)
 
-          consignment-asset-id (mapv #(get-in % [:fields :pdf :sys :id]) consignment-form)
+          consignment-item-asset-id (get-in consignment-item [:fields :pdf :sys :id])
 
           slide-show-asset-ids (->> slide-show-items
                                     (map :sys)
@@ -148,28 +150,27 @@
 
           assets (get-in response [:includes :Asset])
 
+          match-slide-show-assets (mapv (fn [id]
+                                         (some #(when (= id (get-in % [:sys :id]))
+                                                  (get-in % [:fields :file :url])) assets))
+                                        slide-show-asset-ids)
 
-          match-slide-show-asseets (mapv (fn [id]
-                                           (some #(when (= id (get-in % [:sys :id]))
-                                                    (get-in % [:fields :file :url])) assets))
-                                         slide-show-asset-ids)
-
-
-          match-menu-items (mapv (fn [id]
+          match-menu-assets (mapv (fn [id]
                                    (some #(when (= id (get-in % [:sys :id]))
                                             (get-in % [:fields :file :url])) assets))
-                                 menu-item-asset-ids)
+                                  menu-item-asset-ids)
 
-          match-consignment-asset (mapv (fn [id]
-                                          (some #(when (= id (get-in % [:sys :id]))
-                                                   (get-in % [:fields :file :url])) assets))
-                                        consignment-asset-id)]
+          match-consignment-assets  (some #(when (= consignment-item-asset-id (get-in % [:sys :id]))
+                                             (get-in % [:fields :file :url])) assets)
+
+          final-consigment-data (assoc consignment-item
+                                  :consignment-asset match-consignment-assets)]
 
       (-> db
-          (assoc :on-slide-show-images  match-slide-show-asseets
-                 :on-about-entry-render about-items
-                 :on-consignment-entry-render match-consignment-asset
-                 :on-menus-entry-render (zipmap menu-item-titles match-menu-items))))))
+          (assoc :on-slide-show-images  match-slide-show-assets
+                 :on-about-entry-render about-item
+                 :on-consignment-entry-render final-consigment-data
+                 :on-menus-entry-render (zipmap menu-item-titles match-menu-assets))))))
 
 (re-frame/register-handler
   :set-active-view

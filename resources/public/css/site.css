@@ -263,7 +263,6 @@ ul.events-menu li a {
   background: #fff;
   z-index: 1000;
   /* so the menu or its navicon stays above all content */
-  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 #nav-wrapper ul li {

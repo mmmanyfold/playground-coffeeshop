@@ -1,6 +1,7 @@
 (ns playground-coffeeshop.views.consignment
   (:require [re-frame.core :as re-frame]
-            [reagent.core :as reagent]))
+            [reagent.core :as reagent]
+            [cljsjs.marked]))
 
 (defn consignment-view []
   (let [consignment (re-frame/subscribe [:on-consignment-entry-render])]
@@ -11,13 +12,16 @@
            (re-frame/dispatch [:get-site-cms-data])))
        :reagent-render
        (fn []
-         (let [link (first @consignment)]
-           [:div
-            [:h3 "Sell with us!"]
-            [:p "We are accepting zines, cassettes, vinyl records, vhs tapes, cds, prints, etc for consignment."]
-            [:p "Please send completed consignment form to "
-             [:a {:href "mailto:general@playgroundcoffeeshop.com"} "general@playgroundcoffeeshop.com"]
-             " along with images of your work."]
-            [:br]
-            [:a.button-link {:href link :target "_blank"}
-             [:b "Download Form"]]]))})))
+         (when @consignment
+           (let [title (get-in @consignment [:fields :title])
+                 details (get-in @consignment [:fields :details])
+                 link (@consignment :consignment-asset)]
+             [:div
+              [:h3 title]
+
+              [:div {"dangerouslySetInnerHTML"
+                     #js{:__html (js/marked details)}}]
+
+              [:p {:style {:margin-top "27px"}}
+               [:a.button-link {:href link :target "_blank"}
+                [:b "Download Form"]]]])))})))

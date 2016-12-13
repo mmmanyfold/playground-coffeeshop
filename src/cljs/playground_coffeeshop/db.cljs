@@ -8,4 +8,5 @@
    :on-event-details-render nil
    :on-about-entry-render nil
    :on-menus-entry-render nil
-   :on-slide-show-images nil})
+   :on-slide-show-images nil
+   :on-consignment-entry-render nil})
