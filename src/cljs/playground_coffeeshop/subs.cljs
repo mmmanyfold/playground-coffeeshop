@@ -46,3 +46,8 @@
   :on-slide-show-images
   (fn [db _]
     (reaction (:on-slide-show-images @db))))
+
+(re-frame/register-sub
+  :on-news-entries-received
+  (fn [db _]
+    (reaction (:on-news-entries-received @db))))

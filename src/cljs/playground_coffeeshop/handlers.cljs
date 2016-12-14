@@ -8,8 +8,11 @@
 
 (defonce events-space "vwupty4rcx24")
 (defonce site-space "3tvj6ug2yrmi")
+(defonce news-space "ybsyvzjbcqye")
 (defonce event-cdn-token "bfcc4593881abafaed07ce4b74f384cf82bf693a300fb1a4c0bffc05d6bfdaa9")
 (defonce site-cdn-token "9e839c4c137d65e026cce9aa3a7f0be8a954055b25a969474cd0bd202bf703c4")
+(defonce news-cdn-token "227fb3b8c2ba3127dc03f5ba17e9a5258de77a52b68b8718353e5bc7cae76900")
+
 
 (defn- filter-items [comparador type items]
   "
@@ -48,6 +51,16 @@
     db))
 
 (re-frame/register-handler
+  :get-news-cms-data
+  (fn [db _]
+    (GET (str "https://cdn.contentful.com/spaces/" news-space "/entries?access_token=" news-cdn-token)
+         {:response-format :json
+          :keywords?       true
+          :handler         #(re-frame/dispatch [:process-contentful-news-ok-response %1])
+          :error-handler   #(re-frame/dispatch [:process-contenful-error-response %1])})
+    db))
+
+(re-frame/register-handler
   :post-email
   (fn [db [_ body]]
     (POST "https://mmmanyfold-api.herokuapp.com/api/mail"
@@ -81,6 +94,12 @@
     [db [_ _]]
     (-> db
         (assoc :on-mailer-process-event nil))))
+
+(re-frame/register-handler
+  :process-contentful-news-ok-response
+  (fn [db [_ response]]
+    (-> db
+        (assoc :on-news-entries-received response))))
 
 (re-frame/register-handler
   :process-contentful-events-ok-response
