@@ -1,10 +1,12 @@
-(ns playground-coffeeshop.components.news-article)
+(ns playground-coffeeshop.components.news-article
+  (:require [cljsjs.marked]))
 
 (defn article
   "Renders one of articles"
   [{:keys [author title body createdAt]}]
-  [:div
+  [:article
    [:h3 title]
-   [:h3 author]
-   [:h3 createdAt]
-   [:div.content body]])
+   [:small (str "Posted by " author " on " createdAt)]
+   [:div.article-body {"dangerouslySetInnerHTML"
+                       #js{:__html (js/marked body)}}]
+   [:hr]])

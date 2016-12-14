@@ -390,3 +390,15 @@ img {
 .affix {
   position: fixed;
 }
+article {
+  margin-top: 2em;
+}
+article h3 {
+  margin-bottom: 0;
+}
+article .article-body {
+  margin-top: 20px;
+}
+article .article-body img {
+  width: 100%;
+}
