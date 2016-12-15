@@ -13,7 +13,7 @@
        :reagent-render
        (fn []
          (when @news
-           (let [articles (@news :items)]
+           (let [articles @news]
              [:div
               [:h2 "News"]
               [:hr]
@@ -22,8 +22,11 @@
                           title (get-in a [:fields :title])
                           author (get-in a [:fields :author])
                           body (get-in a [:fields :body])]]
-                ^{:key (gensym)}
+                ^{:key (gensym "article-")}
                 [article {:createdAt createdAt
                           :title     title
                           :author    author
-                          :body      body}])])))})))
+                          :body      body}])
+              [:div.footer
+               [:a {:on-click #(re-frame/dispatch [:get-news-cms-data 5])}
+                [:i.fa.fa-angle-double-right.fa-3 "next-5"]]]])))})))
