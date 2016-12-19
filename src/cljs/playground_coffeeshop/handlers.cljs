@@ -33,6 +33,12 @@
         "&limit=" limit
         "&skip=" (or skip 0))))
 
+(defn comp-unix-end [a b]
+  (let [a-unix (:unix-end-time a)
+        b-unix (:unix-end-time b)]
+    (if (> a-unix b-unix) true false)))
+
+
 (re-frame/register-handler
   :initialize-db
   (fn [_ _]
@@ -149,8 +155,12 @@
 
                                         url (get-in img [:fields :file :url])]
                                     (assoc (:fields k)
-                                      :img-src url :photo-urls photo-urls))) event-items)
-          _response (assoc response :items items_mod)]
+                                      :unix-end-time (.unix (js/moment (get-in k [:fields :end])))
+                                      :img-src url
+                                      :photo-urls photo-urls))) event-items)
+          sorted-items (sort comp-unix-end items_mod)
+          _response (assoc response :items sorted-items)]
+
       (when (empty? (:filtered-events db))
         (re-frame/dispatch [:display-filtered-events]))
       (-> db
@@ -231,11 +241,11 @@
       (let [nowish (.unix (js/moment))
             custom-events (filterv
                             (fn [e]
-                              (let [start (:start e)
-                                    unix-start (.unix (js/moment start))]
+                              (let [end (:end e)
+                                    unix-end (.unix (js/moment end))]
                                 (if-not op
                                   db
-                                  (apply op [unix-start nowish]))))
+                                  (apply op [unix-end nowish]))))
                             items)]
         (when-let [id (:details-render-id db)]
           (js/setTimeout #(re-frame/dispatch [:render-event-details id]) 1000))
