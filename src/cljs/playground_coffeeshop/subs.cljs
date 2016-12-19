@@ -51,3 +51,13 @@
   :on-news-entries-received
   (fn [db _]
     (reaction (:on-news-entries-received @db))))
+
+(re-frame/register-sub
+  :on-news-entries-total-received
+  (fn [db _]
+    (reaction (:on-news-entries-total-received @db))))
+
+(re-frame/register-sub
+  :on-news-entries-loading
+  (fn [db _]
+    (reaction (:on-news-entries-loading @db))))

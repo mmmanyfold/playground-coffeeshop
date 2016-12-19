@@ -62,12 +62,19 @@
   :get-news-cms-data
   (fn [db [_ skip]]
     (let [many 5]
+      (re-frame/dispatch [:on-news-entries-loading true])
       (GET (contentful-cdn-query news-space news-cdn-token many skip)
            {:response-format :json
             :keywords?       true
             :handler         #(re-frame/dispatch [:process-contentful-news-ok-response %1])
             :error-handler   #(re-frame/dispatch [:process-contenful-error-response %1])}))
     db))
+
+(re-frame/register-handler
+  :on-news-entries-loading
+  (fn [db [_ loading?]]
+    (-> db
+        (assoc :on-news-entries-loading loading?))))
 
 (re-frame/register-handler
   :post-email
@@ -107,10 +114,13 @@
 (re-frame/register-handler
   :process-contentful-news-ok-response
   (fn [db [_ response]]
-    (let [items (:items response)]
+    (re-frame/dispatch [:on-news-entries-loading false])
+    (let [items (:items response)
+          total (:total response)]
       (if (empty? (:on-news-entries-received db))
         (-> db
-            (assoc :on-news-entries-received items))
+            (assoc :on-news-entries-received items
+                   :on-news-entries-total-received total))
         (-> db
             (assoc :on-news-entries-received
                    (concat (:on-news-entries-received db) items)))))))
@@ -150,6 +160,7 @@
   :process-contenful-error-response
   (fn
     [db [_ response]]
+    (re-frame/dispatch [:on-news-entries-loading false])
     (-> db
         (assoc :cms-events response))))
 

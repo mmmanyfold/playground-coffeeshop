@@ -402,3 +402,20 @@ article .article-body {
 article .article-body img {
   width: 100%;
 }
+.news-wrapper .footer {
+  text-align: center;
+}
+.news-wrapper .footer button {
+  background: none;
+  border: none;
+}
+.news-wrapper .footer button:hover {
+  color: #8B4513;
+}
+.news-wrapper .footer button:focus {
+  outline: none;
+}
+.news-wrapper .footer i {
+  cursor: pointer;
+  font-size: 2em;
+}

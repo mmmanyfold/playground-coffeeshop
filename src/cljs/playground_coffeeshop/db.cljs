@@ -10,4 +10,6 @@
    :on-menus-entry-render nil
    :on-slide-show-images nil
    :on-consignment-entry-render nil
-   :on-news-entries-received nil})
+   :on-news-entries-received nil
+   :on-news-entries-total-received 0
+   :on-news-entries-loading false})
