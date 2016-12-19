@@ -36,9 +36,8 @@
        [:div#nav-wrapper
          [:ul.nav
           [:li [:a {:href "/about"} "About"]]
-          [:li [:a {:href "/news"} "News"]]
           [:li [:a {:href "/menus"} "Menus"]]
-          [:li [:a {:href "/bookings"} "Bookings"]]
+          [:li [:a {:href "/news"} "News"]]
           [:ul.events-menu [:span [:a
                                    {:href     "/events"
                                     :on-click #(re-frame/dispatch [:display-filtered-events])} "Events"]]
@@ -56,6 +55,7 @@
             [:a {:href     "/events"
                  :on-click #(re-frame/dispatch [:display-filtered-events <])}
              [:span "Past"]]]]
+          [:li [:a {:href "/bookings"} "Bookings"]]
           [:li [:a {:href "/consignment"} "Consignment"]]
           [:li [:a {:href "/contact"} "Contact"]]]]
        [:div.main
