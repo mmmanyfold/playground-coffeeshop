@@ -99,5 +99,4 @@
                          ;   [:img.phone {:src "img/header_phone.png"}]]]
                          (if (:error data)
                            [:span (:status-text (:error data))]
-                           [:img {:src data}])]
-                        ])})))
+                           [:img {:src data}])]])})))

@@ -8,8 +8,11 @@
 
 (defonce events-space "vwupty4rcx24")
 (defonce site-space "3tvj6ug2yrmi")
+(defonce news-space "ybsyvzjbcqye")
 (defonce event-cdn-token "bfcc4593881abafaed07ce4b74f384cf82bf693a300fb1a4c0bffc05d6bfdaa9")
 (defonce site-cdn-token "9e839c4c137d65e026cce9aa3a7f0be8a954055b25a969474cd0bd202bf703c4")
+(defonce news-cdn-token "227fb3b8c2ba3127dc03f5ba17e9a5258de77a52b68b8718353e5bc7cae76900")
+
 
 (defn- filter-items [comparador type items]
   "
@@ -22,6 +25,14 @@
                         (-> %
                             (get-in [:sys :contentType :sys :id]))) items))
 
+(defn contentful-cdn-query
+  ([space token]
+   (str "https://cdn.contentful.com/spaces/" space "/entries?access_token=" token))
+  ([space token limit & [skip]]
+   (str "https://cdn.contentful.com/spaces/" space "/entries?access_token=" token
+        "&limit=" limit
+        "&skip=" (or skip 0))))
+
 (re-frame/register-handler
   :initialize-db
   (fn [_ _]
@@ -30,7 +41,7 @@
 (re-frame/register-handler
   :get-event-cms-data
   (fn [db _]
-    (GET (str "https://cdn.contentful.com/spaces/" events-space "/entries?access_token=" event-cdn-token)
+    (GET (contentful-cdn-query events-space event-cdn-token)
          {:response-format :json
           :keywords?       true
           :handler         #(re-frame/dispatch [:process-contentful-events-ok-response %1])
@@ -40,12 +51,30 @@
 (re-frame/register-handler
   :get-site-cms-data
   (fn [db _]
-    (GET (str "https://cdn.contentful.com/spaces/" site-space "/entries?access_token=" site-cdn-token)
+    (GET (contentful-cdn-query site-space site-cdn-token)
          {:response-format :json
           :keywords?       true
           :handler         #(re-frame/dispatch [:process-contentful-site-ok-response %1])
           :error-handler   #(re-frame/dispatch [:process-contenful-error-response %1])})
     db))
+
+(re-frame/register-handler
+  :get-news-cms-data
+  (fn [db [_ skip]]
+    (let [many 5]
+      (re-frame/dispatch [:on-news-entries-loading true])
+      (GET (contentful-cdn-query news-space news-cdn-token many skip)
+           {:response-format :json
+            :keywords?       true
+            :handler         #(re-frame/dispatch [:process-contentful-news-ok-response %1])
+            :error-handler   #(re-frame/dispatch [:process-contenful-error-response %1])}))
+    db))
+
+(re-frame/register-handler
+  :on-news-entries-loading
+  (fn [db [_ loading?]]
+    (-> db
+        (assoc :on-news-entries-loading loading?))))
 
 (re-frame/register-handler
   :post-email
@@ -83,6 +112,20 @@
         (assoc :on-mailer-process-event nil))))
 
 (re-frame/register-handler
+  :process-contentful-news-ok-response
+  (fn [db [_ response]]
+    (re-frame/dispatch [:on-news-entries-loading false])
+    (let [items (:items response)
+          total (:total response)]
+      (if (empty? (:on-news-entries-received db))
+        (-> db
+            (assoc :on-news-entries-received items
+                   :on-news-entries-total-received total))
+        (-> db
+            (assoc :on-news-entries-received
+                   (concat (:on-news-entries-received db) items)))))))
+
+(re-frame/register-handler
   :process-contentful-events-ok-response
   (fn
     [db [_ response]]
@@ -117,6 +160,7 @@
   :process-contenful-error-response
   (fn
     [db [_ response]]
+    (re-frame/dispatch [:on-news-entries-loading false])
     (-> db
         (assoc :cms-events response))))
 
@@ -151,23 +195,23 @@
           assets (get-in response [:includes :Asset])
 
           match-slide-show-assets (mapv (fn [id]
-                                         (some #(when (= id (get-in % [:sys :id]))
-                                                  (get-in % [:fields :file :url])) assets))
+                                          (some #(when (= id (get-in % [:sys :id]))
+                                                   (get-in % [:fields :file :url])) assets))
                                         slide-show-asset-ids)
 
           match-menu-assets (mapv (fn [id]
-                                   (some #(when (= id (get-in % [:sys :id]))
-                                            (get-in % [:fields :file :url])) assets))
+                                    (some #(when (= id (get-in % [:sys :id]))
+                                             (get-in % [:fields :file :url])) assets))
                                   menu-item-asset-ids)
 
-          match-consignment-assets  (some #(when (= consignment-item-asset-id (get-in % [:sys :id]))
-                                             (get-in % [:fields :file :url])) assets)
+          match-consignment-assets (some #(when (= consignment-item-asset-id (get-in % [:sys :id]))
+                                            (get-in % [:fields :file :url])) assets)
 
           final-consigment-data (assoc consignment-item
                                   :consignment-asset match-consignment-assets)]
 
       (-> db
-          (assoc :on-slide-show-images  match-slide-show-assets
+          (assoc :on-slide-show-images match-slide-show-assets
                  :on-about-entry-render about-item
                  :on-consignment-entry-render final-consigment-data
                  :on-menus-entry-render (zipmap menu-item-titles match-menu-assets))))))

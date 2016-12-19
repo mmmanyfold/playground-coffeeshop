@@ -1,6 +1,7 @@
 (ns playground-coffeeshop.components.nav
   (:require [re-frame.core :as re-frame]
             [playground-coffeeshop.views.about :refer [about-view]]
+            [playground-coffeeshop.views.news :refer [news-view]]
             [playground-coffeeshop.views.events :refer [events-view]]
             [playground-coffeeshop.views.home :refer [home-view]]
             [playground-coffeeshop.views.bookings :refer [bookings-view]]
@@ -10,9 +11,12 @@
             [playground-coffeeshop.views.consignment :refer [consignment-view]]
             [playground-coffeeshop.views.event :refer [event-view]]))
 
+;; TODO: move this back to views.cljs
+
 (defmulti views identity)
 (defmethod views :home-view [] [home-view])
 (defmethod views :about-view [] [about-view])
+(defmethod views :news-view [] [news-view])
 (defmethod views :events-view [] [events-view])
 (defmethod views :bookings-view [] [bookings-view])
 (defmethod views :contact-view [] [contact-view])
@@ -32,6 +36,7 @@
        [:div#nav-wrapper
          [:ul.nav
           [:li [:a {:href "/about"} "About"]]
+          [:li [:a {:href "/news"} "News"]]
           [:li [:a {:href "/menus"} "Menus"]]
           [:li [:a {:href "/bookings"} "Bookings"]]
           [:ul.events-menu [:span [:a
