@@ -112,8 +112,7 @@ h3, h4 { margin-top: 0 }
 .header {
   height: 250px;
   margin-bottom: 2em;
-  @media (max-width: 48em) {
-    margin-bottom: 0.5em;
+  @media (min-width: 1500px) {
     height: auto;
   }
 
@@ -122,6 +121,12 @@ h3, h4 { margin-top: 0 }
     img.logo {
      width: 100%;
      height: auto;
+    }
+    @media (min-width: 1500px) {
+      img.logo {
+        height: 100%;
+        width: auto
+      }
     }
     @media (max-width: 48em) {
       width: 100%;
@@ -135,6 +140,11 @@ h3, h4 { margin-top: 0 }
     img.addy {
       width: 40%;
       padding-top: 20px;
+    }
+    @media (min-width: 1500px) {
+      img.addy {
+        width: 20%;
+      }
     }
     @media (max-width: 48em) {
       display: none;

@@ -40,8 +40,8 @@
                           (case (mod r 3)
                             0 (.rectangle Bodies x y 10 10 bc)
                             1 (.circle Bodies x y 8 wc)
-                            2 (.polygon Bodies x y 3 8 wc)))))))  ;; triangle
-
+                            2 (.polygon Bodies x y 3 8 wc)  ;; triangle
+                            ))))))
 
 (def weight (.circle Bodies (+ HW 60) -300 50 (clj->js (assoc BLACK-COLOR
                                                          :density 1))))
@@ -57,36 +57,36 @@
   (let []
     (reagent/create-class
       {:component-did-mount
-                     (fn [])
-                       ;(let [; create a renderer
-                       ;      render
-                       ;      (.create Render #js {:element (.querySelector js/document "#canvas")
-                       ;                           :engine  engine
-                       ;                           :options #js {:wireframes false
-                       ;                                         :background "transparent"
-                       ;                                         :width      WIDTH
-                       ;                                         :height     HEIGHT}})]
-                       ;
-                       ;  ; add all of the bodies to the world
-                       ;  (.add World (.-world engine)
-                       ;        #js [stack
-                       ;             catapult
-                       ;             counter-balance
-                       ;             weight
-                       ;             (.create Constraint (clj->js {:bodyA catapult :pointB {:x (+ HW 140) :y (+ HH 20)}}))
-                       ;             (.create Constraint (clj->js {:bodyA catapult :pointB {:x (+ HW 180) :y (+ HH 20)}}))])
-                       ;
-                       ;  ; run the engine
-                       ;  (.run Engine engine)
-                       ;  ; run the renderer
-                       ;  (.run Render render)))
+                     (fn []
+                       (let [; create a renderer
+                             render
+                             (.create Render #js {:element (.querySelector js/document "#canvas")
+                                                  :engine  engine
+                                                  :options #js {:wireframes false
+                                                                :background "transparent"
+                                                                :width      WIDTH
+                                                                :height     HEIGHT}})]
+
+                         ; add all of the bodies to the world
+                         (.add World (.-world engine)
+                               #js [stack
+                                    catapult
+                                    counter-balance
+                                    weight
+                                    (.create Constraint (clj->js {:bodyA catapult :pointB {:x (+ HW 140) :y (+ HH 20)}}))
+                                    (.create Constraint (clj->js {:bodyA catapult :pointB {:x (+ HW 180) :y (+ HH 20)}}))])
+
+                         ; run the engine
+                         (.run Engine engine)
+                         ; run the renderer
+                         (.run Render render)))
 
        :display-name "header-component"
 
        :reagent-render
                      (fn [data]
                        [:div
-                        ;[:div#canvas]
+                        [:div#canvas]
                         [:div.header.flex-row
                          [:div.left.flex-col
                           [:a {:href "/"}
@@ -100,4 +100,3 @@
                          (if (:error data)
                            [:span (:status-text (:error data))]
                            [:img {:src data}])]])})))
-
