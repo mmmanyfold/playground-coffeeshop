@@ -21,5 +21,4 @@
         [:span formatted-start-date " – " formatted-end-date])
       [:br]
       formatted-start-time " – " formatted-end-time [:br]
-      cost [:br]]
-     [:hr]]))
+      cost [:br]]]))

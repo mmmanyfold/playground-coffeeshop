@@ -22,6 +22,8 @@
              (for [item @filtered-events
                    :let [id (get-in item [:image :sys :id])]]
                ^{:key (gensym "event-")}
-               [:a.event-link {:href id}
-                [event-thumb-component item]])
+               [:div.event-link
+                [:a {:href id}
+                  [event-thumb-component item]]
+                [:hr]])
              "No upcoming events / check back soon.")]])})))
