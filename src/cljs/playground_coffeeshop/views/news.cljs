@@ -34,4 +34,4 @@
                    [:button {:disabled (if @loading? true false)
                              :on-click #(re-frame/dispatch [:get-news-cms-data 5])}
                     [:i.fa.fa-angle-double-down.fa-5]])])
-             [:h3 "Check back soon!"])])})))
+             [:h3 "Please check back soon!"])])})))
