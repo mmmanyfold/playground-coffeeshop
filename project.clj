@@ -57,7 +57,6 @@
                     :output-dir           "resources/public/js/compiled/out"
                     :asset-path           "js/compiled/out"
                     :source-map-timestamp true}}
-
     {:id           "min"
      :source-paths ["src/cljs"]
      :jar          true

@@ -5,9 +5,7 @@
 
 (defn events-view []
   (let [filtered-events (re-frame/subscribe [:filtered-events])]
-
     (reagent/create-class
-
       {:component-will-mount
        (fn []
          (when (empty? @filtered-events)

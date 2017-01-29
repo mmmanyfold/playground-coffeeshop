@@ -36,7 +36,7 @@
        [:div#nav-wrapper
          [:ul.nav
           [:li [:a {:href "/about"} "About"]]
-          [:li [:a {:href "/menus"} "Menus"]]
+          ; [:li [:a {:href "/menus"} "Menus"]]
           [:li [:a {:href "/news"} "News"]]
           [:ul.events-menu [:span [:a
                                    {:href     "/events"
