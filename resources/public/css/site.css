@@ -251,6 +251,10 @@ ul.events-menu li a {
   width: 200px;
 }
 @media (max-width: 48em) {
+  #nav-wrapper,
+  .flex-row {
+    position: relative !important;
+  }
   .nav {
     display: none;
   }
@@ -267,7 +271,8 @@ ul.events-menu li a {
   }
 }
 #nav-wrapper {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.5);
+  display: inline-block;
   z-index: 1000;
   /* so the menu or its navicon stays above all content */
   -webkit-overflow-scrolling: touch;
@@ -402,6 +407,11 @@ img {
   padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
+}
+@media (max-width: 48em) {
+  .embed-container {
+    display: none;
+  }
 }
 .embed-container iframe,
 .embed-container object,
