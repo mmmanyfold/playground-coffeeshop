@@ -28,13 +28,6 @@
   [view-name]
   [views view-name])
 
-; (defonce iframe-code
-;   "<iframe width='100%' height='85%' src='https://www.youtube.com/embed/wqdTWsI9N0k?autoplay=1;rel=0&amp;controls=0&amp;showinfo=0' frameborder=0 allowfullscreen></iframe>")
-;
-; (defn- generic-responsive-iframe
-;   "returns a responsive iframe"
-;   [iframe-code]
-;   (.replace iframe-code (js/RegExp. "/\\\"/g,'\\''")))
 
 (defn main-view []
  (let [active-view (re-frame/subscribe [:active-view])]
