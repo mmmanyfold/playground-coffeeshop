@@ -18,10 +18,8 @@
                  link (@consignment :consignment-asset)]
              [:div
               [:h3 title]
-
-              [:div {"dangerouslySetInnerHTML"
-                     #js{:__html (js/marked details)}}]
-
-              [:p {:style {:margin-top "27px"}}
+              [:p {:style {:margin "27px 0"}}
                [:a.button-link {:href link :target "_blank"}
-                [:b "Download Form"]]]])))})))
+                [:b "Download Form"]]]
+              [:div {"dangerouslySetInnerHTML"
+                     #js{:__html (js/marked details)}}]])))})))
