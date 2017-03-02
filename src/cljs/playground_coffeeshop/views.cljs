@@ -22,7 +22,7 @@
 (defmethod views :event-view [] [event-view])
 (defmethod views :menus-view [] [menus-view])
 (defmethod views :consignment-view [] [consignment-view])
-(defmethod views :default [] [:div "404"])
+(defmethod views :default [] [:div])
 
 (defn show-view
   [view-name]
