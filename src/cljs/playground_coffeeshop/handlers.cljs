@@ -192,10 +192,6 @@
                                :fields
                                :images)
 
-          ; menu-item-titles (mapv #(get-in % [:fields :title]) menu-items)
-          ;
-          ; menu-item-asset-ids (mapv #(get-in % [:fields :pdf :sys :id]) menu-items)
-
           consignment-pdf-asset-id (get-in consignment-item [:fields :pdf :sys :id])
 
           consignment-gallery-items (get-in consignment-item [:fields :imageGallery])
@@ -215,11 +211,6 @@
                                                    (get-in % [:fields :file :url])) assets))
                                         slide-show-image-ids)
 
-          ; match-menu-assets (mapv (fn [id]
-          ;                           (some #(when (= id (get-in % [:sys :id]))
-          ;                                    (get-in % [:fields :file :url])) assets))
-          ;                         menu-item-asset-ids)
-
           match-consignment-assets (some #(when (= consignment-pdf-asset-id (get-in % [:sys :id]))
                                             (get-in % [:fields :file :url])) assets)
 
@@ -238,7 +229,6 @@
           (assoc :on-slide-show-images match-slide-show-assets
                  :on-about-entry-render about-item
                  :on-consignment-entry-render final-consigment-data)))))
-                ;  :on-menus-entry-render (zipmap menu-item-titles match-menu-assets))))))
 
 (re-frame/register-handler
   :set-active-view
