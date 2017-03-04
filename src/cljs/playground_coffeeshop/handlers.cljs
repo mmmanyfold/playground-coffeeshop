@@ -192,13 +192,15 @@
                                :fields
                                :images)
 
-          menu-item-titles (mapv #(get-in % [:fields :title]) menu-items)
+          consignment-pdf-asset-id (get-in consignment-item [:fields :pdf :sys :id])
 
-          menu-item-asset-ids (mapv #(get-in % [:fields :pdf :sys :id]) menu-items)
+          consignment-gallery-items (get-in consignment-item [:fields :imageGallery])
 
-          consignment-item-asset-id (get-in consignment-item [:fields :pdf :sys :id])
+          consignment-gallery-image-ids (->> consignment-gallery-items
+                                             (map :sys)
+                                             (map :id))
 
-          slide-show-asset-ids (->> slide-show-items
+          slide-show-image-ids (->> slide-show-items
                                     (map :sys)
                                     (map :id))
 
@@ -207,24 +209,26 @@
           match-slide-show-assets (mapv (fn [id]
                                           (some #(when (= id (get-in % [:sys :id]))
                                                    (get-in % [:fields :file :url])) assets))
-                                        slide-show-asset-ids)
+                                        slide-show-image-ids)
 
-          match-menu-assets (mapv (fn [id]
-                                    (some #(when (= id (get-in % [:sys :id]))
-                                             (get-in % [:fields :file :url])) assets))
-                                  menu-item-asset-ids)
-
-          match-consignment-assets (some #(when (= consignment-item-asset-id (get-in % [:sys :id]))
+          match-consignment-assets (some #(when (= consignment-pdf-asset-id (get-in % [:sys :id]))
                                             (get-in % [:fields :file :url])) assets)
 
+          match-consignment-images (mapv (fn [id]
+                                           (some #(when (= id (get-in % [:sys :id]))
+                                                    (hash-map
+                                                      :image-title (get-in % [:fields :title])
+                                                      :image-url (get-in % [:fields :file :url]))) assets))
+                                         consignment-gallery-image-ids)
+
           final-consigment-data (assoc consignment-item
-                                  :consignment-asset match-consignment-assets)]
+                                  :consignment-asset match-consignment-assets
+                                  :consignment-images match-consignment-images)]
 
       (-> db
           (assoc :on-slide-show-images match-slide-show-assets
                  :on-about-entry-render about-item
-                 :on-consignment-entry-render final-consigment-data
-                 :on-menus-entry-render (zipmap menu-item-titles match-menu-assets))))))
+                 :on-consignment-entry-render final-consigment-data)))))
 
 (re-frame/register-handler
   :set-active-view

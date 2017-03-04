@@ -40,8 +40,8 @@
           [nav-component]
           [:div.main
            [:div.content
-            [:img {:src "img/timelapse_clip.gif"
-                   :width "100%"}]]]]
+            [:img.timelapse-mobile {:src "img/timelapse_clip.gif"
+                                    :width "100%"}]]]]
         [:div.embed-container
           [:iframe {:src "https://www.youtube.com/embed/wqdTWsI9N0k?autoplay=1;rel=0&amp;controls=0&amp;showinfo=0"
                     :frameBorder 0

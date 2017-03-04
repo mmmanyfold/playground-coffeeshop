@@ -36,14 +36,14 @@
              :type  "number" :tabIndex "3" :required true :placeholder "How many people?"}]]
    [:fieldset
     [:input {:field       :text :id :event-type
-             :placeholder "Event Type" :type "text" :tabIndex "4" :required true}]]
+             :placeholder "Event type" :type "text" :tabIndex "4" :required true}]]
    [:fieldset
     [:textarea {:field       :datepicker :id :date
                 :date-format "yyyy/mm/dd" :inline true :placeholder "Date"
                 :type        "datetime" :tabIndex "5" :required true}]]
    [:fieldset
     [:input {:field       :text :id :time
-             :placeholder "Time: 12 pm" :type "text" :tabIndex "6" :required true}]]])
+             :placeholder "Time - EST" :type "text" :tabIndex "6" :required true}]]])
 
 
 (defn alert-update! [type title msg]
@@ -70,7 +70,7 @@
                    (js/window.scrollTo 0 0))
           "default"))
       [:div
-       [:h3 "Bookings"]
+       [:h2 "Bookings"]
        [alert-component msg-state 5000]
        [:p "The space can be converted into a gallery, party, performance venue, etc."]
        [:p "Prices contingent upon the idea."]
