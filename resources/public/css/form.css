@@ -1,3 +1,6 @@
+.pure-form input {
+  width: 275px;
+}
 .typeahead-list {
   list-style-type: none;
   padding: 5px;
@@ -30,7 +33,7 @@ li.highlighted {
  */
 .datepicker-wrapper {
   position: relative;
-  max-width: 220px;
+  max-width: 275px;
 }
 .datepicker.dp-inline {
   top: 0;
@@ -59,8 +62,6 @@ li.highlighted {
   background-clip: padding-box;
 }
 .datepicker:before {
-  content: '';
-  display: inline-block;
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
   border-bottom: 7px solid #ccc;

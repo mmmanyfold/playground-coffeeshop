@@ -40,8 +40,8 @@
                           (case (mod r 3)
                             0 (.rectangle Bodies x y 10 10 bc)
                             1 (.circle Bodies x y 8 wc)
-                            2 (.polygon Bodies x y 3 8 wc)  ;; triangle
-                            ))))))
+                            2 (.polygon Bodies x y 3 8 wc)))))))  ;; triangle
+
 
 (def weight (.circle Bodies (+ HW 60) -300 50 (clj->js (assoc BLACK-COLOR
                                                          :density 1))))
