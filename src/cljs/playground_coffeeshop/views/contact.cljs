@@ -5,6 +5,5 @@
 
 (defn contact-view []
   [:div
-   [:h2 "General Inquiries"]
-   [:br]
+   [:h2 "General Inquiries:"]
    [:h3 [:a {:href "mailto:general@playgroundcoffeeshop.com"} "general@playgroundcoffeeshop.com"]]])

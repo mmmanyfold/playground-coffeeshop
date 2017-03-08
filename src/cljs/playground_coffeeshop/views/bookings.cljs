@@ -71,6 +71,7 @@
           "default"))
       [:div
        [:h2 "Bookings"]
+       [:hr]
        [alert-component msg-state 5000]
        [:p "The space can be converted into a gallery, party, performance venue, etc."]
        [:p "Prices contingent upon the idea."]

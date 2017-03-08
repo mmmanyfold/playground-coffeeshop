@@ -19,11 +19,12 @@
                  gallery (@consignment :consignment-images)]
              [:div
               [:h2 title]
+              [:hr]
+              [:div {"dangerouslySetInnerHTML"
+                     #js{:__html (js/marked details)}}]
               [:p {:style {:margin "27px 0"}}
                [:a.button-link {:href link :target "_blank"}
                 [:b "Download Form"]]]
-              [:div {"dangerouslySetInnerHTML"
-                     #js{:__html (js/marked details)}}]
               [:p "Below are some of the items that we sell instore:"]
               [:div.flex-row-wrap
                (for [image gallery

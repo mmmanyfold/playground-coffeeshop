@@ -17,6 +17,9 @@
        (fn []
          (let [{:keys [description]} (:fields @about)]
            [:div
+            [:h2 "About Us"]
+            [:hr]
+            [:p description]
             [:div.carousel.slide {:data-ride "carousel"}
              [:div.carousel-inner
               (let [first-image (first @slide-show-images)]
@@ -25,5 +28,4 @@
                             is-first? (= first-image src)]]
                   ^{:key id}
                   [:div.item {:class (when is-first? "active")}
-                   [:img {:src src, :alt "Playground Coffee Shop"}]]))]]
-            [:p description]]))})))
+                   [:img {:src src, :alt "Playground Coffee Shop"}]]))]]]))})))
