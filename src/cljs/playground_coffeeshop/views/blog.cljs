@@ -1,9 +1,9 @@
-(ns playground-coffeeshop.views.news
+(ns playground-coffeeshop.views.blog
   (:require [re-frame.core :as re-frame]
             [reagent.core :as reagent]
             [playground-coffeeshop.components.news-article :refer [article]]))
 
-(defn news-view []
+(defn blog-view []
   (let [news (re-frame/subscribe [:on-news-entries-received])
         total (re-frame/subscribe [:on-news-entries-total-received])
         loading? (re-frame/subscribe [:on-news-entries-loading])]
@@ -15,7 +15,7 @@
        :reagent-render
        (fn []
          [:div.news-wrapper
-           [:h2 "News"]
+           [:h2 "Blog"]
            [:hr]
            (if (seq? @news)
              (let [articles @news]
