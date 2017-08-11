@@ -4,7 +4,7 @@
             [playground-coffeeshop.components.nav :refer [nav-component]]
             [playground-coffeeshop.components.footer :refer [footer-component]]
             [playground-coffeeshop.views.about :refer [about-view]]
-            [playground-coffeeshop.views.news :refer [news-view]]
+            [playground-coffeeshop.views.blog :refer [blog-view]]
             [playground-coffeeshop.views.events :refer [events-view]]
             [playground-coffeeshop.views.bookings :refer [bookings-view]]
             [playground-coffeeshop.views.contact :refer [contact-view]]
@@ -15,7 +15,7 @@
 
 (defmulti views identity)
 (defmethod views :about-view [] [about-view])
-(defmethod views :news-view [] [news-view])
+(defmethod views :blog-view [] [blog-view])
 (defmethod views :events-view [] [events-view])
 (defmethod views :bookings-view [] [bookings-view])
 (defmethod views :contact-view [] [contact-view])

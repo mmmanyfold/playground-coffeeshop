@@ -9,7 +9,7 @@
        [:ul.nav
         [:li [:a {:href "/about"} "About"]]
         ; [:li [:a {:href "/menus"} "Menus"]]
-        [:li [:a {:href "/news"} "News"]]
+        [:li [:a {:href "/blog"} "Blog"]]
         [:ul.events-menu [:span [:a
                                  {:href     "/events"
                                   :on-click #(re-frame/dispatch [:display-filtered-events])} "Events"]]

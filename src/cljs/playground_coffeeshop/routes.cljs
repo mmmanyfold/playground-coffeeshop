@@ -37,8 +37,8 @@
   ;; define routes here
   (defroute "/" []
             (re-frame/dispatch [:set-active-view :home-view]))
-  (defroute "/news" []
-            (re-frame/dispatch [:set-active-view :news-view]))
+  (defroute "/blog" []
+            (re-frame/dispatch [:set-active-view :blog-view]))
   (defroute "/about" []
             (re-frame/dispatch [:set-active-view :about-view]))
   (defroute "/menus" []
