@@ -8,7 +8,6 @@
                                  {:position "absolute"})}
        [:ul.nav
         [:li [:a {:href "/about"} "About"]]
-        ; [:li [:a {:href "/menus"} "Menus"]]
         [:li [:a {:href "http://blog.playgroundcoffeeshop.com"} "Blog"]]
         [:ul.events-menu [:span [:a
                                  {:href     "/events"
