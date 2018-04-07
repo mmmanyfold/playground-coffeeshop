@@ -27,5 +27,5 @@
                :on-click #(re-frame/dispatch [:display-filtered-events <])}
            [:span "Past"]]]]
         [:li [:a {:href "/bookings"} "Bookings"]]
-        [:li [:a {:href "/consignment"} "Consignment"]]
+        [:li [:a {:href "/shop"} "Shop"]]
         [:li [:a {:href "/contact"} "Contact"]]]])))

@@ -15,7 +15,6 @@
          (when @consignment
            (let [title (get-in @consignment [:fields :title])
                  details (get-in @consignment [:fields :details])
-                 link (@consignment :consignment-asset)
                  gallery (@consignment :consignment-images)]
              [:div
               [:h2 title]
