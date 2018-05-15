@@ -51,7 +51,7 @@ hr {
     width: 90%;
   }
   @media (max-width: 48em) {
-    width: 100%;
+    font-size: 0.9em;
   }
 }
 
@@ -211,35 +211,49 @@ hr {
 // footer component
 
 .footer {
-  font-size: 0.9em;
   width: 100%;
-  padding: 0.2em 0 3em 0;
-  @media (max-width: 30em) {
-    font-size: 0.7em;
+  margin-top: 1em;
+  margin-bottom: 3em;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  padding: 1em 0;
+  flex-flow: row wrap;
+  i.label {
+    margin-right: 7px;
+  }
+  .left {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  @media (max-width: 562px) {
+    .left {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .info {
+      margin-bottom: 1em;
+    }
   }
 }
 
 .info {
-  margin: 0 1.5em 0 0.8em;
-}
-
-.subscribe-and-social {
-  max-width: 55%;
+  margin: 0 1.75em 0 0;
+  @media (max-width: 562px) {
+    margin-right: 0;
+  }
 }
 
 .social {
   text-align: center;
-  margin-left: 0.8em;
-  margin-right: 0.2em;
-  @media (max-width: 30em) {
-    margin-left: 0.4em;
+  margin-right: 1.75em;
+  @media (max-width: 562px) {
     margin-right: 0;
   }
 }
 
 .socialbtns, .socialbtns ul, .socialbtns li {
   margin: 0;
-  padding: 3px;
+  padding-bottom: 3px;
 }
 
 .socialbtns li {
@@ -257,9 +271,9 @@ hr {
   -moz-border-radius: 22px;
   -webkit-border-radius: 22px;
   -o-border-radius: 22px;
-  @media (max-width: 30em) {
-    width: 21px;
-    height: 16px;
+  @media (max-width: 562px) {
+    width: 24px;
+    height: 19px;
     padding-top: 5px;
   }
 }
@@ -367,6 +381,7 @@ ul.events-menu li {
   color: #000;
   border: none;
   padding: 0 0 0 0.5em;
+  margin-top: 0.5em;
   margin-bottom: 0.5em;
   margin-right: 0.5em;
 }

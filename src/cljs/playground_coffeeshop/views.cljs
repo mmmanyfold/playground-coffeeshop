@@ -46,8 +46,8 @@
           [:iframe {:src "https://www.youtube.com/embed/wqdTWsI9N0k?autoplay=1;rel=0&amp;controls=0&amp;showinfo=0"
                     :frameBorder 0
                     :allowFullScreen true}]]
-        [:br]
-        [:hr]
+        [:div {:style {:overflow "hidden"}}
+          [:iframe {:src "https://mixlr.com/users/2451151/embed", :width "100%", :height "180px", :scrolling "no", :frameborder "no", :marginheight "0", :marginwidth "0"}]]
         [footer-component]]
        [:div
         [:div.flex-row
@@ -55,6 +55,4 @@
          [:div.main
           [:div.content
            [show-view @active-view]]]]
-        [:br]
-        [:hr]
         [footer-component]])])))
