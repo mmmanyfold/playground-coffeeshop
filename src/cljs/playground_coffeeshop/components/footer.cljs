@@ -25,7 +25,7 @@
          [:br]
          [:i.label {:class "fa fa-envelope"}]
          [:a {:href "mailto:general@playgroundcoffeeshop.com"}
-           "general@"]]]
+           "general@playgroundcoffeeshop.com"]]]
       [:div.subscribe
         [:b "Mailing List"]
         [:div#mc_embed_signup
