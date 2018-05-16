@@ -48,7 +48,7 @@
                     :allowFullScreen true}]]
         [:div {:style {:overflow "hidden" :text-align "right"}}
           [:iframe {:src "https://mixlr.com/users/2451151/embed?autoplay=true", :width "100%", :height "112px", :scrolling "no", :frameborder "no", :marginHeight "0", :marginWidth "0"}]
-          [:br][:small "You're Listening to 8Ball Radio"]]
+          [:br][:small [:i "You're Listening to 8Ball Radio"]]]
         [footer-component]]
        [:div
         [:div.flex-row

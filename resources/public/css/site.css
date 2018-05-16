@@ -207,10 +207,9 @@ hr {
   display: flex;
   flex-flow: row wrap;
 }
-@media (max-width: 562px) {
+@media (max-width: 615px) {
   .footer .left {
     width: 100%;
-    justify-content: space-between;
   }
   .footer .info {
     margin-bottom: 1em;
@@ -219,19 +218,9 @@ hr {
 .info {
   margin: 0 1.75em 0 0;
 }
-@media (max-width: 562px) {
-  .info {
-    margin-right: 0;
-  }
-}
 .social {
   text-align: center;
   margin-right: 1.75em;
-}
-@media (max-width: 562px) {
-  .social {
-    margin-right: 0;
-  }
 }
 .socialbtns,
 .socialbtns ul,
