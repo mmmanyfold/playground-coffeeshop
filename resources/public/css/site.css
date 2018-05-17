@@ -49,6 +49,11 @@ hr {
     width: 90%;
   }
 }
+@media (min-width: 1200px) {
+  #app {
+    width: 1000px;
+  }
+}
 @media (max-width: 48em) {
   #app {
     font-size: 0.9em;
