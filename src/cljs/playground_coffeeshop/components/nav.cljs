@@ -4,8 +4,7 @@
 (defn nav-component []
   (let [active-view (re-frame/subscribe [:active-view])]
     (fn []
-     [:div#nav-wrapper {:style (when (= @active-view :home-view)
-                                 {:position "absolute"})}
+     [:div#nav-wrapper
        [:ul.nav
         [:li [:a {:href "/about"} "About"]]
         [:li [:a {:href "http://blog.playgroundcoffeeshop.com"} "Blog"]]

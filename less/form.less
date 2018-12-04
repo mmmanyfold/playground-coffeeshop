@@ -1,7 +1,12 @@
 // FORM-CSS
 // ********
 .pure-form {
-  input { width: 275px; }
+  input {
+    width: 275px;
+    @media screen and (max-width: 48em) {
+      width: 235px;
+    }
+  }
 }
 // cal css
 .typeahead-list {

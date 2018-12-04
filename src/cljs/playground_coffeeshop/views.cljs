@@ -36,16 +36,13 @@
      [header-component]
      (if (= @active-view :home-view)
        [:div
-        [:div.flex-row {:style {:position "absolute"}}
+        [:div.flex-row
           [nav-component]
           [:div.main
-           [:div.content
-            [:img.timelapse-mobile {:src "img/timelapse_clip.gif"
-                                    :width "100%"}]]]]
-        [:div.embed-container
-          [:iframe {:src "https://www.youtube.com/embed/wqdTWsI9N0k?rel=0&autoplay=1&controls=0&showinfo=0"
-                    :frameBorder 0
-                    :allowFullScreen true}]]
+           [:div.embed-container
+            [:iframe {:src "https://www.youtube.com/embed/maRzI4b_CbA?rel=0&autoplay=1&controls=0&showinfo=0"
+                      :frameBorder 0
+                      :allowFullScreen true}]]]]
         [footer-component]]
        [:div
         [:div.flex-row

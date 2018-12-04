@@ -30,16 +30,15 @@
                  formatted-end-time (.format (js/moment end) "LT")]
              (fn []
                [:div.event-details
-                [:h3.text-center title]
-                [:div.text-center
+                [:h3 title]
+                [:div
                  (if (= formatted-start-date formatted-end-date)
                    formatted-start-date
                    [:span formatted-start-date " – " formatted-end-date])
                  [:br]
                  formatted-start-time " – " formatted-end-time [:br]
                  cost [:br][:br]]
-                [:img {:src   img-src
-                       :width "100%"}]
+                [:img {:src img-src}]
 
                 [:div {"dangerouslySetInnerHTML"
                        #js{:__html (js/marked description)}}]

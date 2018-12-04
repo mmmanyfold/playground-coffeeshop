@@ -12,6 +12,7 @@
 }
 
 body {
+  word-break: break-word;
   color: black;
   font-family: "Lusitana", Palatino, serif;
   font-size: 1.1em;
@@ -39,6 +40,7 @@ h4 { margin-top: 0 }
 
 hr {
   height: 2px;
+  margin-top: 0.35em;
   border: none;
   color: black;
   background-color: black;
@@ -53,7 +55,7 @@ hr {
   @media (min-width: 1200px) {
     width: 1000px;
   }
-  @media (max-width: 48em) {
+  @media (max-width: 38em) {
     font-size: 0.9em;
   }
 }
@@ -67,10 +69,7 @@ hr {
 .main {
   width: 100%;
   display: inline-block;
-
-  img.main {
-    width: 100%;
-  }
+  padding-bottom: 1em;
 
   .content {
     margin: 0 1em 1em 1em;
@@ -80,9 +79,13 @@ hr {
       margin: 0 1em 1em 2em;
     }
   }
-  @media (max-width: 48em) {
+  @media (max-width: 38em) {
+    margin-left: 2.2em;
     .content {
-      margin: 0.7em 1em 1em 2em;
+      margin: 0.75em 1em 1em 0;
+      h2 {
+        margin-bottom: 0.27em;
+      }
     }
   }
 }
@@ -112,6 +115,7 @@ hr {
   display: flex;
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
+  justify-content: space-between;
 }
 
 // consignment
@@ -136,17 +140,33 @@ hr {
   width: 100%;
 }
 
+.event-details {
+  h3 {
+    margin-left: 0;
+    font-family: 'Eurostar';
+    font-size: 1.3em;
+    margin-top: 0;
+    text-transform: uppercase;
+  }
+  img {
+    width: 100%;
+  }
+}
+
 .event-thumb {
   border: 2px black solid;
   padding: 0.5em;
   margin: 1em 0;
+  @media (max-width: 38em) {
+    margin-top: 0;
+    margin-bottom: 1.5em;
+  }
 }
 
 .event-link {
-  width: 45%;
-  margin-right: 5%;
-  @media (max-width: 48em) {
-    width: 95%;
+  width: 48%;
+  @media (max-width: 768px) {
+    width: 100%;
   }
 }
 
@@ -164,6 +184,9 @@ hr {
 .header {
   @media (min-width: 769px) and (max-width: 1500px) {
     height: 250px;
+    margin-bottom: 1em;
+  }
+  @media (min-width: 609px) and (max-width: 768px) {
     margin-bottom: 2em;
   }
   .left {
@@ -178,9 +201,8 @@ hr {
         width: auto
       }
     }
-    @media (max-width: 48em) {
+    @media (max-width: 38em) {
       width: 100%;
-      padding: 0 0.5em 0 0.2em;
     }
   }
 
@@ -189,14 +211,14 @@ hr {
     text-align: right;
     img.addy {
       width: 40%;
-      padding-top: 20px;
+      padding-top: 35px;
     }
     @media (min-width: 1500px) {
       img.addy {
         width: 20%;
       }
     }
-    @media (max-width: 48em) {
+    @media (max-width: 38em) {
       display: none;
     }
   }
@@ -206,7 +228,7 @@ hr {
 #canvas {
   position: absolute;
   right: 12.5%;
-  @media (max-width: 48em) {
+  @media (max-width: 38em) {
     display: none;
   }
 }
@@ -341,34 +363,6 @@ ul.events-menu li {
   width: 200px;
 }
 
-@media (max-width: 48em) {
-  #nav-wrapper {
-    position: absolute !important;
-    background-color: white !important;
-  }
-  .flex-row {
-    position: relative !important;
-  }
-  .nav { display: none; }
-  .nav { display: none; }
-  #nav-wrapper:before { content: "\2261"; font-size: 30pt; }
-  .nav.visible {
-    display: block;
-    font-size: 12pt;
-    width: 175px;
-  }
-}
-
-#nav-wrapper {
-  background: rgba(255,255,255,0.5);
-  display: inline-block;
-  z-index: 1000; /* so the menu or its navicon stays above all content */
-  -webkit-overflow-scrolling: touch;
-  ul li {
-    list-style-type: none;
-  }
-}
-
 #nav-wrapper a {
   display: block;
   font-family: Brush;
@@ -380,6 +374,9 @@ ul.events-menu li {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   margin-right: 0.5em;
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 #nav-wrapper li a:hover,
@@ -390,6 +387,44 @@ ul.events-menu li {
   background: #000;
 }
 
+@media (max-width: 38em) {
+  #nav-wrapper {
+    position: absolute !important;
+    background-color: rgba(0,0,0,0) !important;
+    margin-top: 0.35em;
+    a {
+      color: white;
+      padding-left: 0.75em;
+    }
+  }
+  .flex-row {
+    position: relative !important;
+  }
+  .nav { display: none; }
+  .nav { display: none; }
+  #nav-wrapper:before {
+    content: "\2261";
+    font-size: 30pt;
+    line-height: 0.92em;
+  }
+  .nav.visible {
+    background-color: black !important;
+    padding: 0.9em 0;
+    display: block;
+    font-size: 12pt;
+    width: 155px;
+    height: 100vh;
+  }
+}
+
+#nav-wrapper {
+  display: inline-block;
+  z-index: 1000; /* so the menu or its navicon stays above all content */
+  -webkit-overflow-scrolling: touch;
+  ul li {
+    list-style-type: none;
+  }
+}
 
 // * Bootstrap v3.3.7 carousel
 
@@ -405,7 +440,7 @@ img {
 }
 .carousel {
   position: relative;
-  @media (max-width: 48em) {
+  @media (max-width: 38em) {
     margin-top: 1.1em;
   }
 }
@@ -501,20 +536,13 @@ img {
   position: fixed;
 }
 
-.timelapse-mobile {
-  display: none;
-  @media (max-width: 48em) {
-    display: block;
-  }
-}
-
 .embed-container {
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
-  @media (max-width: 48em) {
-    display: none;
+  @media screen and (max-width: 38em) {
+    margin-top: 1.15em;
   }
 }
 

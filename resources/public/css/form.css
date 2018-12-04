@@ -1,6 +1,11 @@
 .pure-form input {
   width: 275px;
 }
+@media screen and (max-width: 48em) {
+  .pure-form input {
+    width: 235px;
+  }
+}
 .typeahead-list {
   list-style-type: none;
   padding: 5px;
