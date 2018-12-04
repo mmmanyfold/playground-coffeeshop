@@ -42,7 +42,13 @@
            [:div.embed-container
             [:iframe {:src "https://www.youtube.com/embed/maRzI4b_CbA?rel=0&autoplay=1&controls=0&showinfo=0"
                       :frameBorder 0
-                      :allowFullScreen true}]]]]
+                      :allowFullScreen true}]]
+           [:div.flex-row-wrap.players
+            [:div [:a {:href "https://soundcloud.com/playground_youth"} "Soundcloud"]]
+            [:div "*"]
+            [:div [:a {:href "http://mixlr.com/playgroundradio/" } "Mixlr Radio"]]
+            [:iframe {:width "48%", :scrolling "no", :frameborder "no", :src "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/541285623&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"}]
+            [:iframe {:src "https://mixlr.com/playgroundradio/embed", :width "48%", :scrolling "no", :frameborder "no", :marginheight "0", :marginwidth "0"}]]]]
         [footer-component]]
        [:div
         [:div.flex-row

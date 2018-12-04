@@ -556,6 +556,31 @@ img {
   height: 100%;
 }
 
+.players.flex-row-wrap {
+  justify-content: space-around;
+}
+
+.players {
+  margin-top: 1.5em;
+  iframe {
+    display: block;
+  }
+  div {
+    display: none;
+    text-align: center;
+    font-size: 1.5em;
+    font-family: 'Brush Script MT';
+  }
+  @media screen and (max-width: 38em) {
+    iframe {
+      display: none;
+    }
+    div {
+      display: block;
+    }
+  }
+}
+
 article {
   margin-top: 2em;
   h3 {
