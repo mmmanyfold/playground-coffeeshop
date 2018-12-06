@@ -156,7 +156,7 @@
                                         url (get-in img [:fields :file :url])]
                                     (assoc (:fields k)
                                       :unix-end-time (.unix (js/moment (get-in k [:fields :end])))
-                                      :img-src url
+                                      :img-src (str url "?w=600")
                                       :photo-urls photo-urls))) event-items)
           sorted-items (sort comp-unix-end items_mod)
           _response (assoc response :items sorted-items)]
