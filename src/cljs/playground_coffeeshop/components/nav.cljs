@@ -26,5 +26,5 @@
                :on-click #(re-frame/dispatch [:display-filtered-events <])}
            [:span "Past"]]]]
         [:li [:a {:href "/bookings"} "Bookings"]]
-        [:li [:a {:href "http://shop.playgroundcoffeeshop.com"} "Shop"]]
+        [:li [:a {:href "https://playground-annex.myshopify.com/"} "Shop"]]
         [:li [:a {:href "/contact"} "Contact"]]]])))
